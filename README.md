@@ -15,6 +15,25 @@ customer data, funding material, or organization-specific integrations.
 See [`docs/MAINTENANCE.md`](docs/MAINTENANCE.md) for the public/private
 promotion and compatibility boundary.
 
+## Context & Harness family
+
+FLETCHER is the capture-and-replay layer in a four-stage context-control family:
+
+```text
+Sources → FLETCH → MDCROP → LATTICE → FLETCHER
+           fetch     select     close       replay
+```
+
+| Repo | Responsibility |
+|------|----------------|
+| [FLETCH](https://github.com/giodl73-repo/FLETCH) | Acquire, verify, cache, partition, and bundle source material. |
+| [MDCROP](https://github.com/giodl73-repo/MDCROP) | Index and select bounded, provenance-aware candidate context. |
+| [LATTICE](https://github.com/giodl73-repo/LATTICE) | Apply closure, meet/join, budgets, frontiers, packs, and receipts. |
+| **FLETCHER** | Capture harness events, checkpoints, context deltas, and deterministic replay. |
+
+FLETCHER records how context is used. It does not own acquisition, candidate
+selection, or semantic closure.
+
 ## Quick start
 
 ```powershell
