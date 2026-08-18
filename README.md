@@ -64,6 +64,15 @@ cargo clippy --workspace --all-targets -- -D warnings
 cargo test --workspace
 ```
 
+### Retained CLI proof
+
+```powershell
+cargo test -p fletcher-cli --test proof_surface
+```
+
+The fixture records an accepted deterministic replay with seven events and a
+structured exit-code 2 usage failure for an unsupported command.
+
 ## Status
 
 This is an early public core extracted from a larger incubation codebase.
