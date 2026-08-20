@@ -1,8 +1,8 @@
-# FLETCHER
+# WITNESS
 
 **Replayable AI harness event and context-control contracts.**
 
-FLETCHER records user turns, source reads, edits, validation obligations,
+WITNESS records user turns, source reads, edits, validation obligations,
 checkpoints, context deltas, and context operations as typed events. Those
 events can be replayed and handed to
 [LATTICE](https://github.com/giodl73-repo/LATTICE) for deterministic context
@@ -17,10 +17,10 @@ promotion and compatibility boundary.
 
 ## Context & Harness family
 
-FLETCHER is the capture-and-replay layer in a four-stage context-control family:
+WITNESS is the capture-and-replay layer in a four-stage context-control family:
 
 ```text
-Sources → FLETCH → MDCROP → LATTICE → FLETCHER
+Sources → FLETCH → MDCROP → LATTICE → WITNESS
            fetch     select     close       replay
 ```
 
@@ -29,24 +29,24 @@ Sources → FLETCH → MDCROP → LATTICE → FLETCHER
 | [FLETCH](https://github.com/giodl73-repo/FLETCH) | Acquire, verify, cache, partition, and bundle source material. |
 | [MDCROP](https://github.com/giodl73-repo/MDCROP) | Index and select bounded, provenance-aware candidate context. |
 | [LATTICE](https://github.com/giodl73-repo/LATTICE) | Apply closure, meet/join, budgets, frontiers, packs, and receipts. |
-| **FLETCHER** | Capture harness events, checkpoints, context deltas, and deterministic replay. |
+| **WITNESS** | Capture harness events, checkpoints, context deltas, and deterministic replay. |
 
-FLETCHER records how context is used. It does not own acquisition, candidate
+WITNESS records how context is used. It does not own acquisition, candidate
 selection, or semantic closure.
 
 ## Quick start
 
 ```powershell
-cargo run -p fletcher-cli -- status
-cargo run -p fletcher-cli -- replay
+cargo run -p witness-cli -- status
+cargo run -p witness-cli -- replay
 ```
 
 ## Crates
 
 | Crate | Role |
 |---|---|
-| `fletcher-core` | Typed harness events, deltas, checkpoints, handoff records, and deterministic fixtures. |
-| `fletcher-cli` | Minimal public status and replay front door. |
+| `witness-core` | Typed harness events, deltas, checkpoints, handoff records, and deterministic fixtures. |
+| `witness-cli` | Minimal public status and replay front door. |
 
 ## Design principles
 
@@ -54,7 +54,7 @@ cargo run -p fletcher-cli -- replay
 - Keep provider-specific adapters outside the core event model.
 - Make validation obligations and unresolved frontiers explicit.
 - Preserve enough information for deterministic replay and audit.
-- Let LATTICE own semantic closure; FLETCHER owns harness capture and projection.
+- Let LATTICE own semantic closure; WITNESS owns harness capture and projection.
 
 ## Development
 
@@ -67,7 +67,7 @@ cargo test --workspace
 ### Retained CLI proof
 
 ```powershell
-cargo test -p fletcher-cli --test proof_surface
+cargo test -p witness-cli --test proof_surface
 ```
 
 The fixture records an accepted deterministic replay with seven events and a

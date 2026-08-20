@@ -1,9 +1,9 @@
 [package]
-name = "fletcher-cli"
+name = "witness-cli"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
 repository.workspace = true
 
 [dependencies]
-fletcher-core = { path = "../fletcher-core" }
+witness-core = { path = "../witness-core" }

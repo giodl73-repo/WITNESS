@@ -3,12 +3,12 @@
 version = 4
 
 [[package]]
-name = "fletcher-cli"
+name = "witness-cli"
 version = "0.1.0"
 dependencies = [
- "fletcher-core",
+ "witness-core",
 ]
 
 [[package]]
-name = "fletcher-core"
+name = "witness-core"
 version = "0.1.0"

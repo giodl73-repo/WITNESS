@@ -1,4 +1,4 @@
-# FLETCHER Phases
+# WITNESS Phases
 
 | Phase | Status | Goal |
 |---|---|---|

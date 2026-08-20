@@ -1,9 +1,9 @@
-use fletcher_core::claude_session_fixture;
+use witness_core::claude_session_fixture;
 
 fn main() {
     match std::env::args().nth(1).as_deref() {
         Some("status") => {
-            println!("fletcher public core: ready");
+            println!("witness public core: ready");
             println!("commands: status, replay");
         }
         Some("replay") => {
@@ -15,7 +15,7 @@ fn main() {
             println!("frontier_count: {}", replay.frontier_count);
         }
         _ => {
-            eprintln!("usage: fletcher-cli <status|replay>");
+            eprintln!("usage: witness-cli <status|replay>");
             std::process::exit(2);
         }
     }

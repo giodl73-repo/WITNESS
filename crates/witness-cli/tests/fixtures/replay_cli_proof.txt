@@ -2,5 +2,5 @@ accepted.command=replay
 accepted.stdout=fixture: claude-session
 accepted.events=events: 7
 rejected.command=unknown
-rejected.stderr=usage: fletcher-cli <status|replay>
+rejected.stderr=usage: witness-cli <status|replay>
 rejected.exit_code=2

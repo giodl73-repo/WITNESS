@@ -1,6 +1,6 @@
 # Contributing
 
-Contributions should keep FLETCHER's core provider-neutral, replayable, and
+Contributions should keep WITNESS's core provider-neutral, replayable, and
 explicit about consent, safety, validation, and LATTICE handoff boundaries.
 
 ## Before opening a pull request
@@ -9,8 +9,8 @@ explicit about consent, safety, validation, and LATTICE handoff boundaries.
 cargo fmt --all -- --check
 cargo clippy --workspace --all-targets -- -D warnings
 cargo test --workspace --locked
-cargo run -p fletcher-cli -- status
-cargo run -p fletcher-cli -- replay
+cargo run -p witness-cli -- status
+cargo run -p witness-cli -- replay
 ```
 
 Do not commit credentials, private sessions, customer data, raw provider logs,

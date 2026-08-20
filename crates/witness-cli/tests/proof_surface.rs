@@ -11,7 +11,7 @@ fn proof() -> BTreeMap<&'static str, &'static str> {
 #[test]
 fn replay_cli_proof_records_acceptance_and_structured_failure() {
     let proof = proof();
-    let accepted = Command::new(env!("CARGO_BIN_EXE_fletcher-cli"))
+    let accepted = Command::new(env!("CARGO_BIN_EXE_witness-cli"))
         .arg(proof["accepted.command"])
         .output()
         .expect("run accepted replay");
@@ -20,7 +20,7 @@ fn replay_cli_proof_records_acceptance_and_structured_failure() {
     assert!(stdout.contains(proof["accepted.stdout"]));
     assert!(stdout.contains(proof["accepted.events"]));
 
-    let rejected = Command::new(env!("CARGO_BIN_EXE_fletcher-cli"))
+    let rejected = Command::new(env!("CARGO_BIN_EXE_witness-cli"))
         .arg(proof["rejected.command"])
         .output()
         .expect("run rejected command");

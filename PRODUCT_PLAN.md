@@ -1,9 +1,9 @@
-# FLETCHER Product Plan
+# WITNESS Product Plan
 
 ## Thesis
 
 AI harnesses need a durable, provider-neutral event model for context changes,
-tool activity, validation, checkpoints, and replay. FLETCHER makes those
+tool activity, validation, checkpoints, and replay. WITNESS makes those
 transitions explicit and prepares them for LATTICE-backed semantic closure.
 
 ## Public scope

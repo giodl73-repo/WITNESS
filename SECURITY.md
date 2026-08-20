@@ -16,7 +16,7 @@ supported.
 
 ## Scope
 
-FLETCHER handles harness events, source pointers, checkpoints, replay, and
+WITNESS handles harness events, source pointers, checkpoints, replay, and
 context handoffs. Reports should identify whether an issue can capture excluded
 content, expose credentials or session data, forge replay state, skip a safety
 gate, or misrepresent validation.

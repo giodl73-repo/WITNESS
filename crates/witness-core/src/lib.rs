@@ -282,7 +282,7 @@ pub struct PressPreviewReport {
     pub press_frame_id: &'static str,
     pub preview_scope: &'static str,
     pub preview_formats: Vec<&'static str>,
-    pub fletcher_renders_publication: bool,
+    pub witness_renders_publication: bool,
     pub lattice_renders_publication: bool,
 }
 
@@ -301,7 +301,7 @@ pub struct LatticeShardDisplayReport {
     pub frontier_count: usize,
     pub conflicting_boundary_count: usize,
     pub deterministic_replay: bool,
-    pub fletcher_recomputes_alignment: bool,
+    pub witness_recomputes_alignment: bool,
     pub display_modes: Vec<&'static str>,
     pub shards: Vec<LatticeShardDisplayShard>,
     pub boundary_edges: Vec<LatticeShardDisplayEdge>,
@@ -349,7 +349,7 @@ pub struct LatticeShardScenarioDisplayReport {
     pub boundary: &'static str,
     pub scenario_count: usize,
     pub scenario_hash: &'static str,
-    pub fletcher_recomputes_routing: bool,
+    pub witness_recomputes_routing: bool,
     pub examples: Vec<LatticeShardScenarioDisplayExample>,
 }
 
@@ -376,7 +376,7 @@ pub struct LatticeShardValidationDisplayReport {
     pub receipt_path: &'static str,
     pub check_count: usize,
     pub validation_passed: bool,
-    pub fletcher_recomputes_validation: bool,
+    pub witness_recomputes_validation: bool,
     pub checks: Vec<LatticeShardValidationDisplayCheck>,
 }
 
@@ -421,7 +421,7 @@ pub struct FormatMatrixRow {
     pub target: &'static str,
     pub customer_need: &'static str,
     pub native_affordance: &'static str,
-    pub fletcher_model: &'static str,
+    pub witness_model: &'static str,
     pub lattice_validation: &'static str,
     pub projection_fidelity: u8,
 }
@@ -886,7 +886,7 @@ impl OperatorShowcaseReport {
         format!(
             concat!(
                 "{{",
-                "\"schema\":\"fletcher.operator-showcases.v1\",",
+                "\"schema\":\"witness.operator-showcases.v1\",",
                 "\"suite\":\"{}\",",
                 "\"semantic_owner\":\"{}\",",
                 "\"boundary\":\"{}\",",
@@ -920,7 +920,7 @@ impl LatticeScenarioOperatorCatalogReport {
         format!(
             concat!(
                 "{{",
-                "\"schema\":\"fletcher.lattice-scenario-operators.v1\",",
+                "\"schema\":\"witness.lattice-scenario-operators.v1\",",
                 "\"suite\":\"{}\",",
                 "\"consumed_contract_schema\":\"{}\",",
                 "\"semantic_owner\":\"{}\",",
@@ -1018,7 +1018,7 @@ impl DeltaCoverageReport {
         format!(
             concat!(
                 "{{",
-                "\"schema\":\"fletcher.delta-coverage.v1\",",
+                "\"schema\":\"witness.delta-coverage.v1\",",
                 "\"fixture\":\"{}\",",
                 "\"engine\":\"{}\",",
                 "\"level_count\":{},",
@@ -1069,7 +1069,7 @@ impl InteractionScenarioReport {
         format!(
             concat!(
                 "{{",
-                "\"schema\":\"fletcher.interaction-scenarios.v1\",",
+                "\"schema\":\"witness.interaction-scenarios.v1\",",
                 "\"suite\":\"{}\",",
                 "\"provider_adapter\":\"{}\",",
                 "\"base_llm_decision_maker\":\"{}\",",
@@ -1184,7 +1184,7 @@ impl LatticeHandoffReport {
         format!(
             concat!(
                 "{{",
-                "\"schema\":\"fletcher.lattice-handoff.v1\",",
+                "\"schema\":\"witness.lattice-handoff.v1\",",
                 "\"fixture\":\"{}\",",
                 "\"language_owner\":\"{}\",",
                 "\"boundary\":\"{}\",",
@@ -1373,7 +1373,7 @@ impl PressPreviewReport {
                 "\"press_frame_id\":\"{}\",",
                 "\"preview_scope\":\"{}\",",
                 "\"preview_formats\":[{}],",
-                "\"fletcher_renders_publication\":{},",
+                "\"witness_renders_publication\":{},",
                 "\"lattice_renders_publication\":{}",
                 "}}"
             ),
@@ -1386,7 +1386,7 @@ impl PressPreviewReport {
             escape_json(self.press_frame_id),
             escape_json(self.preview_scope),
             json_string_array(&self.preview_formats),
-            self.fletcher_renders_publication,
+            self.witness_renders_publication,
             self.lattice_renders_publication
         )
     }
@@ -1407,7 +1407,7 @@ impl LatticeAlgebraValidationReport {
         format!(
             concat!(
                 "{{",
-                "\"schema\":\"fletcher.lattice-algebra-validation.v1\",",
+                "\"schema\":\"witness.lattice-algebra-validation.v1\",",
                 "\"suite\":\"{}\",",
                 "\"consumed_command\":\"{}\",",
                 "\"consumed_contract_schema\":\"{}\",",
@@ -1469,7 +1469,7 @@ impl LatticeShardDisplayReport {
                 "\"frontier_count\":{},",
                 "\"conflicting_boundary_count\":{},",
                 "\"deterministic_replay\":{},",
-                "\"fletcher_recomputes_alignment\":{},",
+                "\"witness_recomputes_alignment\":{},",
                 "\"display_modes\":[{}],",
                 "\"shards\":[{}],",
                 "\"boundary_edges\":[{}],",
@@ -1489,7 +1489,7 @@ impl LatticeShardDisplayReport {
             self.frontier_count,
             self.conflicting_boundary_count,
             self.deterministic_replay,
-            self.fletcher_recomputes_alignment,
+            self.witness_recomputes_alignment,
             display_modes,
             shards,
             boundary_edges,
@@ -1588,7 +1588,7 @@ impl LatticeShardScenarioDisplayReport {
                 "\"boundary\":\"{}\",",
                 "\"scenario_count\":{},",
                 "\"scenario_hash\":\"{}\",",
-                "\"fletcher_recomputes_routing\":{},",
+                "\"witness_recomputes_routing\":{},",
                 "\"examples\":[{}]",
                 "}}"
             ),
@@ -1600,7 +1600,7 @@ impl LatticeShardScenarioDisplayReport {
             escape_json(self.boundary),
             self.scenario_count,
             escape_json(self.scenario_hash),
-            self.fletcher_recomputes_routing,
+            self.witness_recomputes_routing,
             examples
         )
     }
@@ -1651,7 +1651,7 @@ impl LatticeShardValidationDisplayReport {
                 "\"receipt_path\":\"{}\",",
                 "\"check_count\":{},",
                 "\"validation_passed\":{},",
-                "\"fletcher_recomputes_validation\":{},",
+                "\"witness_recomputes_validation\":{},",
                 "\"checks\":[{}]",
                 "}}"
             ),
@@ -1666,7 +1666,7 @@ impl LatticeShardValidationDisplayReport {
             escape_json(self.receipt_path),
             self.check_count,
             self.validation_passed,
-            self.fletcher_recomputes_validation,
+            self.witness_recomputes_validation,
             checks
         )
     }
@@ -1808,7 +1808,7 @@ impl FormatMatrixReport {
         format!(
             concat!(
                 "{{",
-                "\"schema\":\"fletcher.format-matrix.v1\",",
+                "\"schema\":\"witness.format-matrix.v1\",",
                 "\"suite\":\"{}\",",
                 "\"purpose\":\"{}\",",
                 "\"target_count\":{},",
@@ -1833,7 +1833,7 @@ impl FormatMatrixRow {
                 "\"target\":\"{}\",",
                 "\"customer_need\":\"{}\",",
                 "\"native_affordance\":\"{}\",",
-                "\"fletcher_model\":\"{}\",",
+                "\"witness_model\":\"{}\",",
                 "\"lattice_validation\":\"{}\",",
                 "\"projection_fidelity\":{}",
                 "}}"
@@ -1841,7 +1841,7 @@ impl FormatMatrixRow {
             escape_json(self.target),
             escape_json(self.customer_need),
             escape_json(self.native_affordance),
-            escape_json(self.fletcher_model),
+            escape_json(self.witness_model),
             escape_json(self.lattice_validation),
             self.projection_fidelity
         )
@@ -1853,7 +1853,7 @@ impl CheckpointArtifact {
         format!(
             concat!(
                 "{{",
-                "\"schema\":\"fletcher.checkpoint-artifact.v1\",",
+                "\"schema\":\"witness.checkpoint-artifact.v1\",",
                 "\"fixture\":\"{}\",",
                 "\"checkpoint_id\":\"{}\",",
                 "\"active_cut\":\"{}\",",
@@ -1896,7 +1896,7 @@ impl CheckpointWriteReport {
         format!(
             concat!(
                 "{{",
-                "\"schema\":\"fletcher.checkpoint-write.v1\",",
+                "\"schema\":\"witness.checkpoint-write.v1\",",
                 "\"path\":\"{}\",",
                 "\"byte_count\":{},",
                 "\"checksum\":{},",
@@ -1928,7 +1928,7 @@ impl SessionCorpusReviewReport {
         format!(
             concat!(
                 "{{",
-                "\"schema\":\"fletcher.session-corpus-review.v1\",",
+                "\"schema\":\"witness.session-corpus-review.v1\",",
                 "\"suite\":\"{}\",",
                 "\"purpose\":\"{}\",",
                 "\"raw_ingestion_allowed\":{},",
@@ -1979,7 +1979,7 @@ impl MaximScenarioReport {
         format!(
             concat!(
                 "{{",
-                "\"schema\":\"fletcher.maxim-scenarios.v1\",",
+                "\"schema\":\"witness.maxim-scenarios.v1\",",
                 "\"suite\":\"{}\",",
                 "\"corpus\":\"{}\",",
                 "\"custody\":\"{}\",",
@@ -2038,7 +2038,7 @@ impl MaximConversationReport {
         format!(
             concat!(
                 "{{",
-                "\"schema\":\"fletcher.maxim-conversations.v1\",",
+                "\"schema\":\"witness.maxim-conversations.v1\",",
                 "\"suite\":\"{}\",",
                 "\"corpus\":\"{}\",",
                 "\"provider_mode\":\"{}\",",
@@ -2136,7 +2136,7 @@ impl MaximConversationEvaluationReport {
         format!(
             concat!(
                 "{{",
-                "\"schema\":\"fletcher.maxim-conversation-eval.v1\",",
+                "\"schema\":\"witness.maxim-conversation-eval.v1\",",
                 "\"suite\":\"{}\",",
                 "\"corpus\":\"{}\",",
                 "\"evaluation_target\":\"{}\",",
@@ -2199,7 +2199,7 @@ impl MaximConversationReplayReport {
         format!(
             concat!(
                 "{{",
-                "\"schema\":\"fletcher.maxim-conversation-replay.v1\",",
+                "\"schema\":\"witness.maxim-conversation-replay.v1\",",
                 "\"suite\":\"{}\",",
                 "\"transcript\":\"{}\",",
                 "\"corpus\":\"{}\",",
@@ -2260,7 +2260,7 @@ impl MaximConversationSyncReport {
         format!(
             concat!(
                 "{{",
-                "\"schema\":\"fletcher.maxim-conversation-sync.v1\",",
+                "\"schema\":\"witness.maxim-conversation-sync.v1\",",
                 "\"suite\":\"{}\",",
                 "\"transcript\":\"{}\",",
                 "\"sync_target\":\"{}\",",
@@ -2319,7 +2319,7 @@ impl ChatWebReadinessReport {
         format!(
             concat!(
                 "{{",
-                "\"schema\":\"fletcher.chat-web-readiness.v1\",",
+                "\"schema\":\"witness.chat-web-readiness.v1\",",
                 "\"suite\":\"{}\",",
                 "\"intended_command\":\"{}\",",
                 "\"host_policy\":\"{}\",",
@@ -2372,7 +2372,7 @@ impl ChatWebFixtureBundleReport {
         format!(
             concat!(
                 "{{",
-                "\"schema\":\"fletcher.chat-web-fixture.v1\",",
+                "\"schema\":\"witness.chat-web-fixture.v1\",",
                 "\"suite\":\"{}\",",
                 "\"bootstrap_route\":\"{}\",",
                 "\"host_policy\":\"{}\",",
@@ -2424,7 +2424,7 @@ impl ChatWebStoryboardReport {
         format!(
             concat!(
                 "{{",
-                "\"schema\":\"fletcher.chat-web-storyboard.v1\",",
+                "\"schema\":\"witness.chat-web-storyboard.v1\",",
                 "\"suite\":\"{}\",",
                 "\"target_surface\":\"{}\",",
                 "\"semantic_owner\":\"{}\",",
@@ -2500,7 +2500,7 @@ impl ChatWebAcceptanceReport {
         format!(
             concat!(
                 "{{",
-                "\"schema\":\"fletcher.chat-web-acceptance.v1\",",
+                "\"schema\":\"witness.chat-web-acceptance.v1\",",
                 "\"suite\":\"{}\",",
                 "\"target_command\":\"{}\",",
                 "\"semantic_owner\":\"{}\",",
@@ -2551,7 +2551,7 @@ impl VisualContextReport {
         format!(
             concat!(
                 "{{",
-                "\"schema\":\"fletcher.visual-context.v1\",",
+                "\"schema\":\"witness.visual-context.v1\",",
                 "\"suite\":\"{}\",",
                 "\"scenario\":\"{}\",",
                 "\"goal_artifact\":\"{}\",",
@@ -2606,7 +2606,7 @@ impl VisualShapeCatalog {
         format!(
             concat!(
                 "{{",
-                "\"schema\":\"fletcher.visual-shapes.v1\",",
+                "\"schema\":\"witness.visual-shapes.v1\",",
                 "\"suite\":\"{}\",",
                 "\"semantic_owner\":\"{}\",",
                 "\"shape_count\":{},",
@@ -2655,7 +2655,7 @@ impl ChunkInventoryReport {
         format!(
             concat!(
                 "{{",
-                "\"schema\":\"fletcher.chunk-inventory.v1\",",
+                "\"schema\":\"witness.chunk-inventory.v1\",",
                 "\"suite\":\"{}\",",
                 "\"semantic_owner\":\"{}\",",
                 "\"inventory_status\":\"{}\",",
@@ -2712,7 +2712,7 @@ impl BuildMeterReport {
         format!(
             concat!(
                 "{{",
-                "\"schema\":\"fletcher.build-meter.v1\",",
+                "\"schema\":\"witness.build-meter.v1\",",
                 "\"suite\":\"{}\",",
                 "\"scenario\":\"{}\",",
                 "\"semantic_owner\":\"{}\",",
@@ -2765,7 +2765,7 @@ impl ArtifactAssemblyReport {
         format!(
             concat!(
                 "{{",
-                "\"schema\":\"fletcher.artifact-assembly.v1\",",
+                "\"schema\":\"witness.artifact-assembly.v1\",",
                 "\"suite\":\"{}\",",
                 "\"scenario\":\"{}\",",
                 "\"artifact_shape\":\"{}\",",
@@ -2822,7 +2822,7 @@ impl NarrowingTraceReport {
         format!(
             concat!(
                 "{{",
-                "\"schema\":\"fletcher.narrowing-trace.v1\",",
+                "\"schema\":\"witness.narrowing-trace.v1\",",
                 "\"suite\":\"{}\",",
                 "\"scenario\":\"{}\",",
                 "\"semantic_owner\":\"{}\",",
@@ -2883,7 +2883,7 @@ impl ConversationSurfaceReport {
         format!(
             concat!(
                 "{{",
-                "\"schema\":\"fletcher.conversation-surface.v1\",",
+                "\"schema\":\"witness.conversation-surface.v1\",",
                 "\"suite\":\"{}\",",
                 "\"scenario\":\"{}\",",
                 "\"primary_surface\":\"{}\",",
@@ -2943,11 +2943,11 @@ impl ResponseDeltaPlan {
     }
 
     pub fn to_json(&self) -> String {
-        self.to_json_with_schema("fletcher.response-deltas.v1")
+        self.to_json_with_schema("witness.response-deltas.v1")
     }
 
     pub fn to_lattice_delta_projection_json(&self) -> String {
-        self.to_json_with_schema("fletcher.lattice-delta-projection.v1")
+        self.to_json_with_schema("witness.lattice-delta-projection.v1")
     }
 
     fn to_json_with_schema(&self, schema: &str) -> String {
@@ -2969,7 +2969,7 @@ impl ResponseDeltaPlan {
                 "\"schema\":\"{}\",",
                 "\"language\":\"LATTICE\",",
                 "\"language_owner\":\"LATTICE\",",
-                "\"adapter\":\"FLETCHER\",",
+                "\"adapter\":\"WITNESS\",",
                 "\"projection\":\"harness-intent-deltas\",",
                 "\"fixture\":\"{}\",",
                 "\"source_response\":\"{}\",",
@@ -3064,7 +3064,7 @@ impl HarnessReplay {
         format!(
             concat!(
                 "{{",
-                "\"schema\":\"fletcher.harness.v1\",",
+                "\"schema\":\"witness.harness.v1\",",
                 "\"fixture\":\"{}\",",
                 "\"substrate\":\"{}\",",
                 "\"active_cut\":\"{}\",",
@@ -3116,9 +3116,9 @@ pub fn claude_session_fixture() -> HarnessReplay {
     HarnessReplay {
         fixture: "claude-session",
         substrate: "LATTICE closed-cut contract",
-        active_cut: "cut:FLETCHER:claude-session:active",
-        checkpoint: "checkpoint:FLETCHER:claude-session:001",
-        rehydrated_cut: "cut:FLETCHER:claude-session:rehydrated",
+        active_cut: "cut:WITNESS:claude-session:active",
+        checkpoint: "checkpoint:WITNESS:claude-session:001",
+        rehydrated_cut: "cut:WITNESS:claude-session:rehydrated",
         frontier_count: 2,
         events: vec![
             HarnessEvent {
@@ -3139,14 +3139,14 @@ pub fn claude_session_fixture() -> HarnessReplay {
                 id: "file-read",
                 kind: HarnessEventKind::FileRead,
                 summary: "Record every file read as source-pointer evidence with path, reason, and version.",
-                source_pointer: Some("repo:crates/fletcher-core/src/lib.rs"),
+                source_pointer: Some("repo:crates/witness-core/src/lib.rs"),
                 receipt: "receipt:file-read",
             },
             HarnessEvent {
                 id: "file-edit",
                 kind: HarnessEventKind::FileEdit,
                 summary: "Record the edit as a transition grain with prior state, target invariant, and validation owed.",
-                source_pointer: Some("repo:crates/fletcher-cli/src/main.rs"),
+                source_pointer: Some("repo:crates/witness-cli/src/main.rs"),
                 receipt: "receipt:file-edit",
             },
             HarnessEvent {
@@ -3179,8 +3179,8 @@ pub fn response_delta_fixture() -> ResponseDeltaPlan {
         fixture: "claude-session-response",
         source_response:
             "AI proposes next harness work without writing low-level lattice expressions.",
-        active_cut: "cut:FLETCHER:claude-session:active",
-        folded_cut: "cut:FLETCHER:claude-session:after-response-deltas",
+        active_cut: "cut:WITNESS:claude-session:active",
+        folded_cut: "cut:WITNESS:claude-session:after-response-deltas",
         deltas: vec![
             ResponseDelta {
                 id: "keep-task-intent",
@@ -3195,10 +3195,10 @@ pub fn response_delta_fixture() -> ResponseDeltaPlan {
                 summary: "Select MAXIM as candidate context without copying source content.",
             },
             ResponseDelta {
-                id: "narrow-to-FLETCHER-roles",
+                id: "narrow-to-WITNESS-roles",
                 kind: ResponseDeltaKind::NarrowContext,
-                expression: "focus on FLETCHER role guidance",
-                summary: "Fold to a meet with the FLETCHER role constraint.",
+                expression: "focus on WITNESS role guidance",
+                summary: "Fold to a meet with the WITNESS role constraint.",
             },
             ResponseDelta {
                 id: "join-lattice-principle",
@@ -3232,11 +3232,11 @@ pub fn lattice_handoff_fixture() -> LatticeHandoffReport {
     LatticeHandoffReport {
         fixture: "claude-session",
         language_owner: "LATTICE",
-        boundary: "FLETCHER displays handoff requests and LATTICE replay responses; LATTICE owns closure, budgets, meet/join execution, and receipt evidence.",
+        boundary: "WITNESS displays handoff requests and LATTICE replay responses; LATTICE owns closure, budgets, meet/join execution, and receipt evidence.",
         lattice_replay_command: "lattice-cli handoff replay tiny --json",
         lattice_replay_schema: "lattice.handoff-replay.v1",
         lattice_delta_schema: "lattice.delta.v1",
-        lattice_pack_id: "pack:fletcher-handoff-pack:fletcher-handoff-replay",
+        lattice_pack_id: "pack:witness-handoff-pack:witness-handoff-replay",
         lattice_prompt_frame_version: "lattice.prompt-frame.v1",
         lattice_frontier_status: "frontier_deferred",
         lattice_frontier_count: 15,
@@ -3251,34 +3251,34 @@ pub fn lattice_handoff_fixture() -> LatticeHandoffReport {
             },
             LatticeSourcePointer {
                 id: "source:file-read",
-                target: "repo:crates/fletcher-core/src/lib.rs",
+                target: "repo:crates/witness-core/src/lib.rs",
                 evidence_role: "implementation-evidence",
                 custody: "pointer-only",
             },
             LatticeSourcePointer {
                 id: "source:file-edit",
-                target: "repo:crates/fletcher-cli/src/main.rs",
+                target: "repo:crates/witness-cli/src/main.rs",
                 evidence_role: "transition-evidence",
                 custody: "pointer-only",
             },
         ],
         cuts: vec![
             LatticeCut {
-                id: "cut:FLETCHER:claude-session:active",
+                id: "cut:WITNESS:claude-session:active",
                 kind: "active-context-request",
                 source: "bootstrap-context",
                 receipt: "receipt:bootstrap-context",
             },
             LatticeCut {
-                id: "cut:FLETCHER:claude-session:after-response-deltas",
+                id: "cut:WITNESS:claude-session:after-response-deltas",
                 kind: "folded-context-request",
                 source: "response-delta-plan",
                 receipt: "receipt:checkpoint-after-fold",
             },
             LatticeCut {
-                id: "cut:FLETCHER:claude-session:rehydrated",
+                id: "cut:WITNESS:claude-session:rehydrated",
                 kind: "rehydration-request",
-                source: "checkpoint:FLETCHER:claude-session:001",
+                source: "checkpoint:WITNESS:claude-session:001",
                 receipt: "receipt:rehydrate",
             },
         ],
@@ -3335,7 +3335,7 @@ pub fn lattice_handoff_fixture() -> LatticeHandoffReport {
             LatticeOperationIntent {
                 id: "intent:meet-with-constraint",
                 operation: "meet",
-                source_delta: "narrow-to-FLETCHER-roles",
+                source_delta: "narrow-to-WITNESS-roles",
                 status: "handoff-request",
             },
             LatticeOperationIntent {
@@ -3350,7 +3350,7 @@ pub fn lattice_handoff_fixture() -> LatticeHandoffReport {
 
 pub fn lattice_source_pilot_fixture() -> LatticeSourcePilotReport {
     LatticeSourcePilotReport {
-        schema: "fletcher.lattice-source-pilot.v1",
+        schema: "witness.lattice-source-pilot.v1",
         consumed_command: "lattice-cli registry pilot fontes --workspace <path> --json",
         semantic_owner: "LATTICE",
         viewer_role: "pointer-only evidence display",
@@ -3372,7 +3372,7 @@ pub fn lattice_source_pilot_fixture() -> LatticeSourcePilotReport {
 
 pub fn mechanical_sandbox_fixture() -> MechanicalSandboxReport {
     MechanicalSandboxReport {
-        schema: "fletcher.mechanical-sandbox.v1",
+        schema: "witness.mechanical-sandbox.v1",
         fixture: "literal-condition-preview",
         provider_execution: "none-fixture-backed",
         preset_dataset: "vacation-literal-candidates",
@@ -3384,7 +3384,7 @@ pub fn mechanical_sandbox_fixture() -> MechanicalSandboxReport {
         reviewed_turn_boundary:
             "reviewed-turn-only: user condition is shown before any LATTICE handoff",
         receipt_citation:
-            "FLETCHER cites LATTICE handoff receipt after review; no provider call is made.",
+            "WITNESS cites LATTICE handoff receipt after review; no provider call is made.",
         accepted_delta_count: 1,
         deferred_delta_count: 1,
         handoff_ready: true,
@@ -3393,7 +3393,7 @@ pub fn mechanical_sandbox_fixture() -> MechanicalSandboxReport {
 
 pub fn reviewer_workflow_fixture() -> ReviewerWorkflowReport {
     ReviewerWorkflowReport {
-        schema: "fletcher.reviewer-workflow.v1",
+        schema: "witness.reviewer-workflow.v1",
         default_route: "handoff-review",
         semantic_owner: "LATTICE",
         viewer_role: "review workflow defaults",
@@ -3412,28 +3412,28 @@ pub fn reviewer_workflow_fixture() -> ReviewerWorkflowReport {
 
 pub fn press_preview_fixture() -> PressPreviewReport {
     PressPreviewReport {
-        schema: "fletcher.press-preview.v1",
+        schema: "witness.press-preview.v1",
         consumed_command: "lattice-cli handoff replay tiny --json",
         consumed_contract_schema: "lattice.press-frame.v1",
         semantic_owner: "LATTICE",
-        preview_owner: "FLETCHER",
+        preview_owner: "WITNESS",
         renderer_owner: "PRESS",
-        press_frame_id: "press-frame:fletcher-handoff-replay",
+        press_frame_id: "press-frame:witness-handoff-replay",
         preview_scope: "display LATTICE PRESS-frame metadata and downstream format intent only",
         preview_formats: vec!["md", "html", "json-report"],
-        fletcher_renders_publication: false,
+        witness_renders_publication: false,
         lattice_renders_publication: false,
     }
 }
 
 pub fn lattice_shard_display_fixture() -> LatticeShardDisplayReport {
     LatticeShardDisplayReport {
-        schema: "fletcher.lattice-shard-display.v1",
+        schema: "witness.lattice-shard-display.v1",
         consumed_command: "lattice-cli materialize shards demo --json",
         consumed_contract_schema: "lattice.shard-alignment-demo.v1",
         semantic_owner: "LATTICE",
         viewer_role: "display-only shard alignment review surface",
-        boundary: "FLETCHER displays LATTICE-owned shard manifests, boundary edges, alignment rows, and aggregate hash without recomputing closure or alignment.",
+        boundary: "WITNESS displays LATTICE-owned shard manifests, boundary edges, alignment rows, and aggregate hash without recomputing closure or alignment.",
         aggregate_hash: "lattice-stable-v1:d2b94725746a2216",
         shard_count: 5,
         boundary_edge_count: 6,
@@ -3441,7 +3441,7 @@ pub fn lattice_shard_display_fixture() -> LatticeShardDisplayReport {
         frontier_count: 4,
         conflicting_boundary_count: 1,
         deterministic_replay: true,
-        fletcher_recomputes_alignment: false,
+        witness_recomputes_alignment: false,
         display_modes: vec![
             "shard-boxes",
             "boundary-edges",
@@ -3594,15 +3594,15 @@ pub fn lattice_shard_display_fixture() -> LatticeShardDisplayReport {
 
 pub fn lattice_shard_scenarios_fixture() -> LatticeShardScenarioDisplayReport {
     LatticeShardScenarioDisplayReport {
-        schema: "fletcher.lattice-shard-scenarios.v1",
+        schema: "witness.lattice-shard-scenarios.v1",
         consumed_command: "lattice-cli shards scenarios --json",
         consumed_contract_schema: "lattice.shard-scenario-set.v1",
         semantic_owner: "LATTICE",
         viewer_role: "display-only shard scenario review surface",
-        boundary: "FLETCHER displays LATTICE-owned shard scenario examples without recomputing routing, closure, or boundary semantics.",
+        boundary: "WITNESS displays LATTICE-owned shard scenario examples without recomputing routing, closure, or boundary semantics.",
         scenario_count: 5,
         scenario_hash: "lattice-stable-v1:ab04b3ad46ccdc5f",
-        fletcher_recomputes_routing: false,
+        witness_recomputes_routing: false,
         examples: vec![
             LatticeShardScenarioDisplayExample {
                 scenario_id: "release-readiness-route",
@@ -3667,18 +3667,18 @@ pub fn lattice_shard_scenarios_fixture() -> LatticeShardScenarioDisplayReport {
 
 pub fn lattice_shard_validation_fixture() -> LatticeShardValidationDisplayReport {
     LatticeShardValidationDisplayReport {
-        schema: "fletcher.lattice-shard-validation.v1",
+        schema: "witness.lattice-shard-validation.v1",
         consumed_command: "lattice-cli validate shards --workspace .lattice-shards --json",
         consumed_contract_schema: "lattice.shard-artifact-validation.v1",
         semantic_owner: "LATTICE",
         viewer_role: "display-only shard artifact validation review surface",
-        boundary: "FLETCHER displays LATTICE-owned shard artifact validation checks without reading manifests, replaying hashes, scanning raw grains, or claiming global closure.",
+        boundary: "WITNESS displays LATTICE-owned shard artifact validation checks without reading manifests, replaying hashes, scanning raw grains, or claiming global closure.",
         aggregate_hash: "lattice-stable-v1:d2b94725746a2216",
         manifest_path: ".lattice-shards\\cache\\shards-demo-manifest.json",
         receipt_path: ".lattice-shards\\receipts\\shards-demo-0000000002.json",
         check_count: 6,
         validation_passed: true,
-        fletcher_recomputes_validation: false,
+        witness_recomputes_validation: false,
         checks: vec![
             LatticeShardValidationDisplayCheck {
                 name: "workspace-directories",
@@ -3716,12 +3716,12 @@ pub fn lattice_shard_validation_fixture() -> LatticeShardValidationDisplayReport
 
 pub fn lattice_algebra_validation_fixture() -> LatticeAlgebraValidationReport {
     LatticeAlgebraValidationReport {
-        suite: "FLETCHER-lattice-algebra-validation-v1",
+        suite: "WITNESS-lattice-algebra-validation-v1",
         consumed_command: "lattice-cli validate algebra --json",
         consumed_contract_schema: "lattice.algebra-property-validation.v1",
         semantic_owner: "LATTICE",
         viewer_role: "property-proof display",
-        boundary: "FLETCHER displays the LATTICE algebra validation report; LATTICE owns meet/join execution and property evaluation.",
+        boundary: "WITNESS displays the LATTICE algebra validation report; LATTICE owns meet/join execution and property evaluation.",
         passed: true,
         rows: vec![
             LatticeAlgebraPropertyRow {
@@ -4098,14 +4098,14 @@ pub fn lattice_algebra_validation_fixture() -> LatticeAlgebraValidationReport {
 
 pub fn format_matrix_fixture() -> FormatMatrixReport {
     FormatMatrixReport {
-        suite: "FLETCHER-customer-format-matrix-v1",
+        suite: "WITNESS-customer-format-matrix-v1",
         purpose: "Model current harness customer needs and validate LATTICE contracts without provider invocation.",
         rows: vec![
             FormatMatrixRow {
                 target: "claude-code",
                 customer_need: "long-running terminal agent with tool gates and resumable context",
                 native_affordance: "chat-plus-tools loop with permission prompts and command execution",
-                fletcher_model: "harness lifecycle events with permission gates, receipts, checkpoint, and rehydrate",
+                witness_model: "harness lifecycle events with permission gates, receipts, checkpoint, and rehydrate",
                 lattice_validation: "source pointers, active cut, validation receipt, frontier, and rehydrated cut",
                 projection_fidelity: 92,
             },
@@ -4113,7 +4113,7 @@ pub fn format_matrix_fixture() -> FormatMatrixReport {
                 target: "codex-style-agent",
                 customer_need: "patch-oriented coding flow with tests and clear handoff of modified files",
                 native_affordance: "edit plan, patch application, command validation, and diff summary",
-                fletcher_model: "file-read, file-edit, validation-owed, checkpoint, and handoff receipts",
+                witness_model: "file-read, file-edit, validation-owed, checkpoint, and handoff receipts",
                 lattice_validation: "transition grain, receipt-backed validation, and frontier for unrun checks",
                 projection_fidelity: 88,
             },
@@ -4121,7 +4121,7 @@ pub fn format_matrix_fixture() -> FormatMatrixReport {
                 target: "copilot-agent",
                 customer_need: "repository-aware task execution that can connect issues, PRs, and checks",
                 native_affordance: "repo graph, pull request workflow, workflow status, and review comments",
-                fletcher_model: "source-pointer candidates plus collaboration and validation scenario families",
+                witness_model: "source-pointer candidates plus collaboration and validation scenario families",
                 lattice_validation: "join source cuts, preserve provenance, and gate downstream evidence",
                 projection_fidelity: 84,
             },
@@ -4129,7 +4129,7 @@ pub fn format_matrix_fixture() -> FormatMatrixReport {
                 target: "cursor-style-workspace",
                 customer_need: "IDE-local context navigation with fast edits and visible file grounding",
                 native_affordance: "workspace index, editor selection, inline edits, and local diagnostics",
-                fletcher_model: "file-navigation and edit-cycle scenarios with source custody gates",
+                witness_model: "file-navigation and edit-cycle scenarios with source custody gates",
                 lattice_validation: "pointer-only evidence, narrowed context, and source-grounded joins",
                 projection_fidelity: 82,
             },
@@ -4137,7 +4137,7 @@ pub fn format_matrix_fixture() -> FormatMatrixReport {
                 target: "local-provider-runtime",
                 customer_need: "private execution where prompts, source, and credentials remain locally controlled",
                 native_affordance: "local model/runtime configuration with restricted network and file access",
-                fletcher_model: "session safety gates, provider-neutral deltas, and explicit frontier records",
+                witness_model: "session safety gates, provider-neutral deltas, and explicit frontier records",
                 lattice_validation: "privacy frontiers, custody receipts, and deferred closure until authorized",
                 projection_fidelity: 86,
             },
@@ -4149,7 +4149,7 @@ pub fn checkpoint_artifact_fixture() -> CheckpointArtifact {
     let replay = claude_session_fixture();
     CheckpointArtifact {
         fixture: "claude-session",
-        checkpoint_id: "checkpoint:FLETCHER:claude-session:001",
+        checkpoint_id: "checkpoint:WITNESS:claude-session:001",
         active_cut: replay.active_cut,
         rehydrated_cut: replay.rehydrated_cut,
         receipt_count: replay.receipt_count(),
@@ -4173,7 +4173,7 @@ pub fn session_corpus_review_fixture() -> SessionCorpusReviewReport {
         },
         SessionCorpusGate {
             id: "pointer-first-custody",
-            requirement: "FLETCHER records session pointers, hashes, and summaries before copying content.",
+            requirement: "WITNESS records session pointers, hashes, and summaries before copying content.",
             status: "required-before-ingest",
             lattice_validation: "source pointer and custody receipt must precede closure.",
         },
@@ -4203,7 +4203,7 @@ pub fn session_corpus_review_fixture() -> SessionCorpusReviewReport {
         },
     ];
     SessionCorpusReviewReport {
-        suite: "FLETCHER-session-corpus-review-v1",
+        suite: "WITNESS-session-corpus-review-v1",
         purpose: "Define safe local session-corpus intake boundaries before real chat analysis.",
         raw_ingestion_allowed: false,
         gate_count: gates.len(),
@@ -4276,7 +4276,7 @@ pub fn maxim_scenario_fixture() -> MaximScenarioReport {
         },
     ];
     MaximScenarioReport {
-        suite: "FLETCHER-maxim-source-scenarios-v1",
+        suite: "WITNESS-maxim-source-scenarios-v1",
         corpus: "MAXIM",
         custody: "pointer-only",
         scenario_count: scenarios.len(),
@@ -4420,7 +4420,7 @@ pub fn maxim_conversation_fixture() -> MaximConversationReport {
         },
     ];
     MaximConversationReport {
-        suite: "FLETCHER-maxim-conversation-scenarios-v1",
+        suite: "WITNESS-maxim-conversation-scenarios-v1",
         corpus: "MAXIM",
         provider_mode: "deterministic-no-provider-call",
         custody: "pointer-only",
@@ -4479,9 +4479,9 @@ pub fn maxim_conversation_eval_fixture() -> MaximConversationEvaluationReport {
         },
     ];
     MaximConversationEvaluationReport {
-        suite: "FLETCHER-maxim-conversation-eval-v1",
+        suite: "WITNESS-maxim-conversation-eval-v1",
         corpus: "MAXIM",
-        evaluation_target: "fletcher.maxim-conversations.v1",
+        evaluation_target: "witness.maxim-conversations.v1",
         semantic_owner: "LATTICE",
         scenario_count: conversations.conversation_count,
         passed_count: results
@@ -4555,7 +4555,7 @@ pub fn maxim_conversation_replay_fixture() -> MaximConversationReplayReport {
         },
     ];
     MaximConversationReplayReport {
-        suite: "FLETCHER-maxim-conversation-replay-v1",
+        suite: "WITNESS-maxim-conversation-replay-v1",
         transcript: "maxim-launch-readiness-chat",
         corpus: "MAXIM",
         semantic_owner: "LATTICE",
@@ -4579,7 +4579,7 @@ pub fn maxim_conversation_sync_fixture() -> MaximConversationSyncReport {
             id: "sync:chat-primary",
             replay_frame: "replay:launch:t1",
             chat_surface_state: "user intent visible in chat",
-            visual_contract: "fletcher.conversation-surface.v1",
+            visual_contract: "witness.conversation-surface.v1",
             expected_artifact: "chat-with-companion-visual",
             sync_gate: "passed:chat-primary",
             result: "passed",
@@ -4588,7 +4588,7 @@ pub fn maxim_conversation_sync_fixture() -> MaximConversationSyncReport {
             id: "sync:world-field",
             replay_frame: "replay:launch:t1",
             chat_surface_state: "intent captured",
-            visual_contract: "fletcher.visual-context.v1",
+            visual_contract: "witness.visual-context.v1",
             expected_artifact: "world-field",
             sync_gate: "passed:visual-opened-on-intent",
             result: "passed",
@@ -4597,7 +4597,7 @@ pub fn maxim_conversation_sync_fixture() -> MaximConversationSyncReport {
             id: "sync:maxim-pointer",
             replay_frame: "replay:launch:t3",
             chat_surface_state: "MAXIM pointers added by user",
-            visual_contract: "fletcher.maxim-conversation-replay.v1",
+            visual_contract: "witness.maxim-conversation-replay.v1",
             expected_artifact: "source-panels-snapped-in",
             sync_gate: "passed:pointer-to-visual-frame",
             result: "passed",
@@ -4606,7 +4606,7 @@ pub fn maxim_conversation_sync_fixture() -> MaximConversationSyncReport {
             id: "sync:receipt-join",
             replay_frame: "replay:launch:t4",
             chat_surface_state: "assistant joins readiness evidence with risk constraints",
-            visual_contract: "fletcher.build-meter.v1",
+            visual_contract: "witness.build-meter.v1",
             expected_artifact: "evidence-joined-with-constraint-shield",
             sync_gate: "passed:receipt-to-meter-stage",
             result: "passed",
@@ -4615,7 +4615,7 @@ pub fn maxim_conversation_sync_fixture() -> MaximConversationSyncReport {
             id: "sync:saved-chunk",
             replay_frame: "replay:launch:t5",
             chat_surface_state: "assistant saves launch readiness pack",
-            visual_contract: "fletcher.chunk-inventory.v1",
+            visual_contract: "witness.chunk-inventory.v1",
             expected_artifact: "chunk-crystallized-frontier-attached",
             sync_gate: "passed:chunk-visible",
             result: "passed",
@@ -4624,14 +4624,14 @@ pub fn maxim_conversation_sync_fixture() -> MaximConversationSyncReport {
             id: "sync:goal-artifact",
             replay_frame: "replay:launch:t6",
             chat_surface_state: "assistant presents staged-launch recommendation",
-            visual_contract: "fletcher.artifact-assembly.v1",
+            visual_contract: "witness.artifact-assembly.v1",
             expected_artifact: "launch-craft-with-frontier-cargo",
             sync_gate: "passed:artifact-with-frontier",
             result: "passed",
         },
     ];
     MaximConversationSyncReport {
-        suite: "FLETCHER-maxim-conversation-sync-v1",
+        suite: "WITNESS-maxim-conversation-sync-v1",
         transcript: "maxim-launch-readiness-chat",
         sync_target: "chat-surface-plus-context-visualization",
         semantic_owner: "LATTICE",
@@ -4653,7 +4653,7 @@ pub fn chat_web_readiness_fixture() -> ChatWebReadinessReport {
         ChatWebRoute {
             path: "/",
             surface: "chat-shell",
-            data_feed: "fletcher.conversation-surface.v1",
+            data_feed: "witness.conversation-surface.v1",
             render_state: "two-pane chat plus context visualization",
             privacy_gate: "local-only",
             ready_gate: "ready",
@@ -4661,7 +4661,7 @@ pub fn chat_web_readiness_fixture() -> ChatWebReadinessReport {
         ChatWebRoute {
             path: "/api/chat/replay",
             surface: "chat-transcript-feed",
-            data_feed: "fletcher.maxim-conversation-replay.v1",
+            data_feed: "witness.maxim-conversation-replay.v1",
             render_state: "turn list with expected deltas",
             privacy_gate: "fixture-only",
             ready_gate: "ready",
@@ -4669,7 +4669,7 @@ pub fn chat_web_readiness_fixture() -> ChatWebReadinessReport {
         ChatWebRoute {
             path: "/api/chat/sync",
             surface: "chat-visual-sync-feed",
-            data_feed: "fletcher.maxim-conversation-sync.v1",
+            data_feed: "witness.maxim-conversation-sync.v1",
             render_state: "lockstep chat and visual assertions",
             privacy_gate: "no-raw-source",
             ready_gate: "ready",
@@ -4677,7 +4677,7 @@ pub fn chat_web_readiness_fixture() -> ChatWebReadinessReport {
         ChatWebRoute {
             path: "/api/visuals/meter",
             surface: "progress-meter",
-            data_feed: "fletcher.build-meter.v1",
+            data_feed: "witness.build-meter.v1",
             render_state: "goal focus through artifact formation",
             privacy_gate: "pointer-only",
             ready_gate: "ready",
@@ -4685,7 +4685,7 @@ pub fn chat_web_readiness_fixture() -> ChatWebReadinessReport {
         ChatWebRoute {
             path: "/api/visuals/assembly",
             surface: "goal-artifact",
-            data_feed: "fletcher.artifact-assembly.v1",
+            data_feed: "witness.artifact-assembly.v1",
             render_state: "launch craft with frontier cargo",
             privacy_gate: "pointer-only",
             ready_gate: "ready",
@@ -4693,15 +4693,15 @@ pub fn chat_web_readiness_fixture() -> ChatWebReadinessReport {
         ChatWebRoute {
             path: "/api/visuals/narrowing",
             surface: "query-narrowing",
-            data_feed: "fletcher.narrowing-trace.v1",
+            data_feed: "witness.narrowing-trace.v1",
             render_state: "world field constrained by user questions",
             privacy_gate: "pointer-only",
             ready_gate: "ready",
         },
     ];
     ChatWebReadinessReport {
-        suite: "FLETCHER-chat-web-readiness-v1",
-        intended_command: "fletcher-cli chat web --port 8787",
+        suite: "WITNESS-chat-web-readiness-v1",
+        intended_command: "witness-cli chat web --port 8787",
         host_policy: "localhost-only-fixture-backed",
         semantic_owner: "LATTICE",
         route_count: routes.len(),
@@ -4717,7 +4717,7 @@ pub fn chat_web_readiness_fixture() -> ChatWebReadinessReport {
 
 pub fn chat_web_fixture_bundle() -> ChatWebFixtureBundleReport {
     ChatWebFixtureBundleReport {
-        suite: "FLETCHER-chat-web-fixture-v1",
+        suite: "WITNESS-chat-web-fixture-v1",
         bootstrap_route: "/api/bootstrap",
         host_policy: "localhost-only-fixture-backed",
         semantic_owner: "LATTICE",
@@ -4732,35 +4732,35 @@ pub fn chat_web_storyboard_fixture() -> ChatWebStoryboardReport {
             id: "panel:chat",
             title: "Conversation",
             role: "primary harness chat",
-            data_feed: "fletcher.maxim-conversation-replay.v1",
+            data_feed: "witness.maxim-conversation-replay.v1",
             render_contract: "turns remain readable while visuals update beside them",
         },
         ChatWebPanel {
             id: "panel:context-field",
             title: "Context field",
             role: "world context narrowing visualization",
-            data_feed: "fletcher.narrowing-trace.v1",
+            data_feed: "witness.narrowing-trace.v1",
             render_contract: "candidate field narrows after user questions",
         },
         ChatWebPanel {
             id: "panel:meter",
             title: "Build meter",
             role: "visible progress and satisfaction loop",
-            data_feed: "fletcher.build-meter.v1",
+            data_feed: "witness.build-meter.v1",
             render_contract: "goal focus, evidence join, constraints, chunks, frontier, artifact",
         },
         ChatWebPanel {
             id: "panel:artifact",
             title: "Launch craft",
             role: "scenario-native goal artifact",
-            data_feed: "fletcher.artifact-assembly.v1",
+            data_feed: "witness.artifact-assembly.v1",
             render_contract: "included pieces and frontier cargo stay visible",
         },
         ChatWebPanel {
             id: "panel:frontier",
             title: "Frontier",
             role: "unresolved work and caveats",
-            data_feed: "fletcher.maxim-conversation-sync.v1",
+            data_feed: "witness.maxim-conversation-sync.v1",
             render_contract: "unresolved context is visible, not hidden as completion",
         },
     ];
@@ -4815,7 +4815,7 @@ pub fn chat_web_storyboard_fixture() -> ChatWebStoryboardReport {
         },
     ];
     ChatWebStoryboardReport {
-        suite: "FLETCHER-chat-web-storyboard-v1",
+        suite: "WITNESS-chat-web-storyboard-v1",
         target_surface: "chat-web-localhost",
         semantic_owner: "LATTICE",
         panel_count: panels.len(),
@@ -4830,49 +4830,49 @@ pub fn chat_web_acceptance_fixture() -> ChatWebAcceptanceReport {
         ChatWebAcceptanceCriterion {
             id: "accept:localhost",
             requirement: "web server binds only to localhost by default",
-            evidence_feed: "fletcher.chat-web-readiness.v1",
+            evidence_feed: "witness.chat-web-readiness.v1",
             expected_check: "host_policy is localhost-only-fixture-backed",
             gate: "required",
         },
         ChatWebAcceptanceCriterion {
             id: "accept:bootstrap",
             requirement: "bootstrap route returns every feed needed for first render",
-            evidence_feed: "fletcher.chat-web-fixture.v1",
+            evidence_feed: "witness.chat-web-fixture.v1",
             expected_check: "/api/bootstrap includes chat, replay, sync, meter, assembly, and narrowing feeds",
             gate: "required",
         },
         ChatWebAcceptanceCriterion {
             id: "accept:chat-primary",
             requirement: "conversation remains the primary harness surface",
-            evidence_feed: "fletcher.conversation-surface.v1",
+            evidence_feed: "witness.conversation-surface.v1",
             expected_check: "primary_surface is chat and companion_surface is context-visualization",
             gate: "required",
         },
         ChatWebAcceptanceCriterion {
             id: "accept:storyboard",
             requirement: "viewer renders storyboard panels and replay activation order",
-            evidence_feed: "fletcher.chat-web-storyboard.v1",
+            evidence_feed: "witness.chat-web-storyboard.v1",
             expected_check: "five panels and six replay frames are available",
             gate: "required",
         },
         ChatWebAcceptanceCriterion {
             id: "accept:frontier",
             requirement: "frontier stays visible through final artifact formation",
-            evidence_feed: "fletcher.maxim-conversation-sync.v1",
+            evidence_feed: "witness.maxim-conversation-sync.v1",
             expected_check: "artifact sync gate requires frontier cargo",
             gate: "required",
         },
         ChatWebAcceptanceCriterion {
             id: "accept:safety",
             requirement: "first viewer uses fixture data only and does not call providers or read raw source payloads",
-            evidence_feed: "fletcher.chat-web-fixture.v1",
+            evidence_feed: "witness.chat-web-fixture.v1",
             expected_check: "privacy_gate is pointer-only-no-provider-no-raw-source",
             gate: "required",
         },
     ];
     ChatWebAcceptanceReport {
-        suite: "FLETCHER-chat-web-acceptance-v1",
-        target_command: "fletcher-cli chat web --port 8787",
+        suite: "WITNESS-chat-web-acceptance-v1",
+        target_command: "witness-cli chat web --port 8787",
         semantic_owner: "LATTICE",
         criterion_count: criteria.len(),
         required_count: criteria
@@ -4929,7 +4929,7 @@ pub fn visual_context_fixture() -> VisualContextReport {
         },
     ];
     VisualContextReport {
-        suite: "FLETCHER-visual-context-shaping-v1",
+        suite: "WITNESS-visual-context-shaping-v1",
         scenario: "product-launch-decision",
         goal_artifact: "launch-craft",
         semantic_owner: "LATTICE",
@@ -4992,7 +4992,7 @@ pub fn visual_shape_catalog_fixture() -> VisualShapeCatalog {
         },
     ];
     VisualShapeCatalog {
-        suite: "FLETCHER-visual-shape-catalog-v1",
+        suite: "WITNESS-visual-shape-catalog-v1",
         semantic_owner: "LATTICE",
         shape_count: shapes.len(),
         shapes,
@@ -5006,7 +5006,7 @@ pub fn chunk_inventory_fixture() -> ChunkInventoryReport {
             title: "Launch readiness pack",
             source: "maxim:product-launch/readiness-signals",
             artifact_shape: "launch-craft",
-            lattice_anchor: "cut:FLETCHER:claude-session:after-response-deltas",
+            lattice_anchor: "cut:WITNESS:claude-session:after-response-deltas",
             custody: "pointer-only",
             reuse_status: "reusable",
         },
@@ -5042,13 +5042,13 @@ pub fn chunk_inventory_fixture() -> ChunkInventoryReport {
             title: "Reusable source cargo",
             source: "maxim:source-pack/reusable-context",
             artifact_shape: "cargo-crates",
-            lattice_anchor: "checkpoint:FLETCHER:claude-session:001",
+            lattice_anchor: "checkpoint:WITNESS:claude-session:001",
             custody: "pointer-only",
             reuse_status: "reusable",
         },
     ];
     ChunkInventoryReport {
-        suite: "FLETCHER-context-chunk-inventory-v1",
+        suite: "WITNESS-context-chunk-inventory-v1",
         semantic_owner: "LATTICE",
         inventory_status: "user-visible-saved-context",
         chunk_count: chunks.len(),
@@ -5071,7 +5071,7 @@ pub fn build_meter_fixture() -> BuildMeterReport {
             label: "Goal focused",
             progress: 100,
             signal: "active user goal captured",
-            lattice_anchor: "cut:FLETCHER:claude-session:active",
+            lattice_anchor: "cut:WITNESS:claude-session:active",
             visual_feedback: "focus cone locks onto the product launch decision",
         },
         BuildMeterStage {
@@ -5116,7 +5116,7 @@ pub fn build_meter_fixture() -> BuildMeterReport {
         },
     ];
     BuildMeterReport {
-        suite: "FLETCHER-context-build-meter-v1",
+        suite: "WITNESS-context-build-meter-v1",
         scenario: "product-launch-decision",
         semantic_owner: "LATTICE",
         overall_progress: 82,
@@ -5155,7 +5155,7 @@ pub fn artifact_assembly_fixture() -> ArtifactAssemblyReport {
             id: "piece:timing-window",
             label: "Timing window",
             role: "launch trajectory",
-            lattice_anchor: "cut:FLETCHER:claude-session:after-response-deltas",
+            lattice_anchor: "cut:WITNESS:claude-session:after-response-deltas",
             fit_status: "included",
             visual_feedback: "the viable release window draws the launch path",
         },
@@ -5163,7 +5163,7 @@ pub fn artifact_assembly_fixture() -> ArtifactAssemblyReport {
             id: "piece:readiness-check",
             label: "Readiness check",
             role: "go/no-go panel",
-            lattice_anchor: "checkpoint:FLETCHER:claude-session:001",
+            lattice_anchor: "checkpoint:WITNESS:claude-session:001",
             fit_status: "included",
             visual_feedback: "validation state lights the go/no-go panel",
         },
@@ -5177,7 +5177,7 @@ pub fn artifact_assembly_fixture() -> ArtifactAssemblyReport {
         },
     ];
     ArtifactAssemblyReport {
-        suite: "FLETCHER-artifact-assembly-v1",
+        suite: "WITNESS-artifact-assembly-v1",
         scenario: "product-launch-decision",
         artifact_shape: "launch-craft",
         semantic_owner: "LATTICE",
@@ -5248,7 +5248,7 @@ pub fn narrowing_trace_fixture() -> NarrowingTraceReport {
         },
     ];
     NarrowingTraceReport {
-        suite: "FLETCHER-narrowing-trace-v1",
+        suite: "WITNESS-narrowing-trace-v1",
         scenario: "product-launch-decision",
         semantic_owner: "LATTICE",
         initial_candidate_count: steps
@@ -5286,7 +5286,7 @@ pub fn conversation_surface_fixture() -> ConversationSurfaceReport {
             harness_event: "context-requested",
             visual_state:
                 "focus cone highlights market, customer, risk, timing, and readiness regions",
-            lattice_anchor: "cut:FLETCHER:claude-session:active",
+            lattice_anchor: "cut:WITNESS:claude-session:active",
             frontier: "frontier:missing-launch-criteria",
         },
         ConversationTurn {
@@ -5318,7 +5318,7 @@ pub fn conversation_surface_fixture() -> ConversationSurfaceReport {
         },
     ];
     ConversationSurfaceReport {
-        suite: "FLETCHER-conversation-surface-v1",
+        suite: "WITNESS-conversation-surface-v1",
         scenario: "product-launch-decision",
         primary_surface: "chat",
         companion_surface: "context-visualization",
@@ -5335,9 +5335,9 @@ pub fn conversation_surface_fixture() -> ConversationSurfaceReport {
 
 pub fn operator_showcase_fixture() -> OperatorShowcaseReport {
     OperatorShowcaseReport {
-        suite: "FLETCHER-lattice-operator-showcases-v1",
+        suite: "WITNESS-lattice-operator-showcases-v1",
         semantic_owner: "LATTICE",
-        boundary: "LATTICE is extensible at the edges, fixed in the middle; FLETCHER shows fixed operators as edge dataflow affordances.",
+        boundary: "LATTICE is extensible at the edges, fixed in the middle; WITNESS shows fixed operators as edge dataflow affordances.",
         generic_dialect_system: false,
         showcases: vec![
             OperatorShowcase {
@@ -5348,7 +5348,7 @@ pub fn operator_showcase_fixture() -> OperatorShowcaseReport {
                 operator_role: "find candidate source-backed context for a question",
                 output_layer: "CandidateView",
                 dataflow: "Source pointers -> search -> candidate evidence field",
-                edge_note: "FLETCHER displays the query motion; LATTICE owns search semantics.",
+                edge_note: "WITNESS displays the query motion; LATTICE owns search semantics.",
             },
             OperatorShowcase {
                 id: "close",
@@ -5368,7 +5368,7 @@ pub fn operator_showcase_fixture() -> OperatorShowcaseReport {
                 operator_role: "intersect compatible constraints or evidence",
                 output_layer: "CandidateCut",
                 dataflow: "Policy sources + exception rules -> meet -> constrained cut",
-                edge_note: "FLETCHER renders the meet gate without redefining meet.",
+                edge_note: "WITNESS renders the meet gate without redefining meet.",
             },
             OperatorShowcase {
                 id: "join",
@@ -5378,7 +5378,7 @@ pub fn operator_showcase_fixture() -> OperatorShowcaseReport {
                 operator_role: "combine compatible evidence paths",
                 output_layer: "CandidateCut",
                 dataflow: "Dependency cut + validation cut -> join -> route cut",
-                edge_note: "FLETCHER renders the join spine as display-only dataflow.",
+                edge_note: "WITNESS renders the join spine as display-only dataflow.",
             },
             OperatorShowcase {
                 id: "explain",
@@ -5408,7 +5408,7 @@ pub fn operator_showcase_fixture() -> OperatorShowcaseReport {
                 operator_role: "bundle closed evidence for reuse",
                 output_layer: "Pack",
                 dataflow: "Closed source cargo -> pack -> reusable context bundle",
-                edge_note: "FLETCHER shows saved chunks while LATTICE owns pack contracts.",
+                edge_note: "WITNESS shows saved chunks while LATTICE owns pack contracts.",
             },
             OperatorShowcase {
                 id: "prompt",
@@ -5418,7 +5418,7 @@ pub fn operator_showcase_fixture() -> OperatorShowcaseReport {
                 operator_role: "frame a pack for harness consumption",
                 output_layer: "PromptFrame",
                 dataflow: "Receipt-backed pack -> prompt -> chat-ready frame",
-                edge_note: "Provider-facing prompt shape stays at FLETCHER's edge.",
+                edge_note: "Provider-facing prompt shape stays at WITNESS's edge.",
             },
             OperatorShowcase {
                 id: "validate",
@@ -5428,7 +5428,7 @@ pub fn operator_showcase_fixture() -> OperatorShowcaseReport {
                 operator_role: "check contracts and execution readiness",
                 output_layer: "Receipt",
                 dataflow: "Workspace artifacts -> validate -> validation receipt",
-                edge_note: "FLETCHER shows owed checks; LATTICE owns pass/fail rules.",
+                edge_note: "WITNESS shows owed checks; LATTICE owns pass/fail rules.",
             },
             OperatorShowcase {
                 id: "rank",
@@ -5448,7 +5448,7 @@ pub fn operator_showcase_fixture() -> OperatorShowcaseReport {
                 operator_role: "order source, context, evidence, policy, and receipts",
                 output_layer: "PathReport",
                 dataflow: "Closed route cut -> path -> ordered reading path",
-                edge_note: "FLETCHER shows the reading order exactly as LATTICE reports it.",
+                edge_note: "WITNESS shows the reading order exactly as LATTICE reports it.",
             },
             OperatorShowcase {
                 id: "bridge",
@@ -5468,7 +5468,7 @@ pub fn operator_showcase_fixture() -> OperatorShowcaseReport {
                 operator_role: "summarize replay, receipt, rights, and source readiness",
                 output_layer: "AuditReport",
                 dataflow: "Closed trace cut -> audit -> replay-readiness badge",
-                edge_note: "FLETCHER displays audit badges; LATTICE owns replay evidence.",
+                edge_note: "WITNESS displays audit badges; LATTICE owns replay evidence.",
             },
             OperatorShowcase {
                 id: "project",
@@ -5488,7 +5488,7 @@ pub fn operator_showcase_fixture() -> OperatorShowcaseReport {
                 operator_role: "compare overlap, relation, receipt delta, and source sharing",
                 output_layer: "CompareReport",
                 dataflow: "Baseline cut + result cut -> compare -> overlap report",
-                edge_note: "FLETCHER shows the report; LATTICE defines comparison fields.",
+                edge_note: "WITNESS shows the report; LATTICE defines comparison fields.",
             },
             OperatorShowcase {
                 id: "narrow",
@@ -5498,7 +5498,7 @@ pub fn operator_showcase_fixture() -> OperatorShowcaseReport {
                 operator_role: "reduce candidates under a user or policy constraint",
                 output_layer: "CandidateCut",
                 dataflow: "Fault field -> narrow -> focused repair candidates",
-                edge_note: "FLETCHER makes narrowing visible without owning closure.",
+                edge_note: "WITNESS makes narrowing visible without owning closure.",
             },
             OperatorShowcase {
                 id: "frontier",
@@ -5518,7 +5518,7 @@ pub fn operator_showcase_fixture() -> OperatorShowcaseReport {
                 operator_role: "measure source and evidence coverage",
                 output_layer: "CoverageReport",
                 dataflow: "Workspace registry -> coverage -> launch readiness coverage",
-                edge_note: "FLETCHER displays coverage as a harness gate only.",
+                edge_note: "WITNESS displays coverage as a harness gate only.",
             },
             OperatorShowcase {
                 id: "gaps",
@@ -5538,7 +5538,7 @@ pub fn operator_showcase_fixture() -> OperatorShowcaseReport {
                 operator_role: "show changed grains or receipts between versions",
                 output_layer: "DiffReport",
                 dataflow: "Earlier cut + revised cut -> diff -> changed evidence rows",
-                edge_note: "FLETCHER shows revision deltas while LATTICE owns identity.",
+                edge_note: "WITNESS shows revision deltas while LATTICE owns identity.",
             },
             OperatorShowcase {
                 id: "refresh",
@@ -5556,11 +5556,11 @@ pub fn operator_showcase_fixture() -> OperatorShowcaseReport {
 
 pub fn lattice_scenario_operator_catalog_fixture() -> LatticeScenarioOperatorCatalogReport {
     LatticeScenarioOperatorCatalogReport {
-        suite: "FLETCHER-lattice-scenario-operators-v1",
+        suite: "WITNESS-lattice-scenario-operators-v1",
         consumed_contract_schema: "lattice.operator-scenario-catalog.v1",
         semantic_owner: "LATTICE",
-        edge_viewer: "FLETCHER",
-        boundary: "FLETCHER consumes fixed scenario operator chains for edge display; LATTICE owns semantics, closure, receipts, budgets, and frontier evidence.",
+        edge_viewer: "WITNESS",
+        boundary: "WITNESS consumes fixed scenario operator chains for edge display; LATTICE owns semantics, closure, receipts, budgets, and frontier evidence.",
         generic_dialect_system: false,
         scenarios: vec![
             LatticeScenarioOperatorChain {
@@ -5638,7 +5638,7 @@ pub fn delta_engine_coverage_fixture() -> DeltaCoverageReport {
     let deltas = response_delta_fixture();
     DeltaCoverageReport {
         fixture: "claude-session",
-        engine: "FLETCHER LATTICE adapter",
+        engine: "WITNESS LATTICE adapter",
         levels: vec![
             DeltaCoverageRow {
                 level: DeltaCoverageLevel::L0,
@@ -5657,7 +5657,7 @@ pub fn delta_engine_coverage_fixture() -> DeltaCoverageReport {
             DeltaCoverageRow {
                 level: DeltaCoverageLevel::L2,
                 name: "folded lattice-operation events",
-                contract: "FLETCHER folds deltas into receipt-ready context events including meet/join operation intents",
+                contract: "WITNESS folds deltas into receipt-ready context events including meet/join operation intents",
                 evidence_count: deltas.folded_event_count(),
                 complete: deltas
                     .deltas
@@ -5675,12 +5675,12 @@ pub fn delta_engine_coverage_fixture() -> DeltaCoverageReport {
 pub fn interaction_scenario_suite(provider_adapter: &str) -> InteractionScenarioReport {
     let scenarios = interaction_scenarios();
     InteractionScenarioReport {
-        suite: "FLETCHER-real-interaction-v1",
+        suite: "WITNESS-real-interaction-v1",
         provider_adapter: provider_adapter.to_string(),
         base_llm_decision_maker: provider_adapter.to_string(),
         provider_execution: "base_llm_decision_adapter_contract",
         decision_boundary:
-            "base LLM proposes decisions and high-level deltas; FLETCHER folds, gates, records, and prepares LATTICE handoff",
+            "base LLM proposes decisions and high-level deltas; WITNESS folds, gates, records, and prepares LATTICE handoff",
         scenario_count: scenarios.len(),
         family_count: INTERACTION_FAMILIES.len(),
         l0_covered_count: scenarios.len(),
@@ -5908,7 +5908,7 @@ mod tests {
     fn claude_session_fixture_json_reports_rehydrate_contract() {
         let output = claude_session_fixture().to_json();
 
-        assert!(output.contains("\"schema\":\"fletcher.harness.v1\""));
+        assert!(output.contains("\"schema\":\"witness.harness.v1\""));
         assert!(output.contains("\"fixture\":\"claude-session\""));
         assert!(output.contains("\"kind\":\"bootstrap_context\""));
         assert!(output.contains("\"kind\":\"rehydrate\""));
@@ -5935,9 +5935,9 @@ mod tests {
     fn response_delta_json_reports_folded_lattice_operations() {
         let output = response_delta_fixture().to_json();
 
-        assert!(output.contains("\"schema\":\"fletcher.response-deltas.v1\""));
+        assert!(output.contains("\"schema\":\"witness.response-deltas.v1\""));
         assert!(output.contains("\"language\":\"LATTICE\""));
-        assert!(output.contains("\"adapter\":\"FLETCHER\""));
+        assert!(output.contains("\"adapter\":\"WITNESS\""));
         assert!(output.contains("\"kind\":\"narrow_context\""));
         assert!(output.contains("\"folded_operation\":\"meet-with-constraint\""));
         assert!(output.contains("\"folded_operation\":\"join-with-source-cut\""));
@@ -5948,10 +5948,10 @@ mod tests {
     fn lattice_delta_projection_json_names_lattice_as_language_owner() {
         let output = response_delta_fixture().to_lattice_delta_projection_json();
 
-        assert!(output.contains("\"schema\":\"fletcher.lattice-delta-projection.v1\""));
+        assert!(output.contains("\"schema\":\"witness.lattice-delta-projection.v1\""));
         assert!(output.contains("\"language\":\"LATTICE\""));
         assert!(output.contains("\"language_owner\":\"LATTICE\""));
-        assert!(output.contains("\"adapter\":\"FLETCHER\""));
+        assert!(output.contains("\"adapter\":\"WITNESS\""));
         assert!(output.contains("\"delta_count\":7"));
     }
 
@@ -5968,11 +5968,11 @@ mod tests {
     fn delta_engine_coverage_json_names_contract_layers() {
         let output = delta_engine_coverage_fixture().to_json();
 
-        assert!(output.contains("\"schema\":\"fletcher.delta-coverage.v1\""));
+        assert!(output.contains("\"schema\":\"witness.delta-coverage.v1\""));
         assert!(output.contains("\"level\":\"L0\""));
         assert!(output.contains("\"level\":\"L1\""));
         assert!(output.contains("\"level\":\"L2\""));
-        assert!(output.contains("\"engine\":\"FLETCHER LATTICE adapter\""));
+        assert!(output.contains("\"engine\":\"WITNESS LATTICE adapter\""));
         assert!(output.contains("\"complete_count\":3"));
     }
 
@@ -5993,7 +5993,7 @@ mod tests {
     fn interaction_suite_json_names_claude_p_adapter_without_invocation() {
         let output = interaction_scenario_suite("claude-p").to_json();
 
-        assert!(output.contains("\"schema\":\"fletcher.interaction-scenarios.v1\""));
+        assert!(output.contains("\"schema\":\"witness.interaction-scenarios.v1\""));
         assert!(output.contains("\"provider_adapter\":\"claude-p\""));
         assert!(output.contains("\"base_llm_decision_maker\":\"claude-p\""));
         assert!(output.contains("\"provider_execution\":\"base_llm_decision_adapter_contract\""));
@@ -6024,7 +6024,7 @@ mod tests {
     fn lattice_handoff_json_keeps_closure_with_lattice() {
         let output = lattice_handoff_fixture().to_json();
 
-        assert!(output.contains("\"schema\":\"fletcher.lattice-handoff.v1\""));
+        assert!(output.contains("\"schema\":\"witness.lattice-handoff.v1\""));
         assert!(output.contains("\"language_owner\":\"LATTICE\""));
         assert!(output.contains("LATTICE owns closure"));
         assert!(output.contains("\"custody\":\"pointer-only\""));
@@ -6041,7 +6041,7 @@ mod tests {
     fn lattice_source_pilot_json_displays_pointer_only_metadata() {
         let output = lattice_source_pilot_fixture().to_json();
 
-        assert!(output.contains("\"schema\":\"fletcher.lattice-source-pilot.v1\""));
+        assert!(output.contains("\"schema\":\"witness.lattice-source-pilot.v1\""));
         assert!(output.contains("lattice-cli registry pilot fontes"));
         assert!(output.contains("\"semantic_owner\":\"LATTICE\""));
         assert!(output.contains("\"source_id\":\"fontes:apache-calcite:query-planning\""));
@@ -6055,7 +6055,7 @@ mod tests {
     fn mechanical_sandbox_json_previews_exact_lattice_delta() {
         let output = mechanical_sandbox_fixture().to_json();
 
-        assert!(output.contains("\"schema\":\"fletcher.mechanical-sandbox.v1\""));
+        assert!(output.contains("\"schema\":\"witness.mechanical-sandbox.v1\""));
         assert!(output.contains("\"provider_execution\":\"none-fixture-backed\""));
         assert!(output.contains("\"consumed_lattice_schema\":\"lattice.delta.v1\""));
         assert!(output.contains("meet(active_literal_cut, condition:quiet-parks)"));
@@ -6068,7 +6068,7 @@ mod tests {
     fn reviewer_workflow_json_defaults_to_receipt_backed_review_path() {
         let output = reviewer_workflow_fixture().to_json();
 
-        assert!(output.contains("\"schema\":\"fletcher.reviewer-workflow.v1\""));
+        assert!(output.contains("\"schema\":\"witness.reviewer-workflow.v1\""));
         assert!(output.contains("\"default_route\":\"handoff-review\""));
         assert!(output.contains("\"default_graph_view\":\"evidence\""));
         assert!(output.contains("\"boundary-view\""));
@@ -6082,12 +6082,12 @@ mod tests {
     fn press_preview_json_keeps_rendering_at_press_edge() {
         let output = press_preview_fixture().to_json();
 
-        assert!(output.contains("\"schema\":\"fletcher.press-preview.v1\""));
+        assert!(output.contains("\"schema\":\"witness.press-preview.v1\""));
         assert!(output.contains("\"consumed_contract_schema\":\"lattice.press-frame.v1\""));
         assert!(output.contains("\"semantic_owner\":\"LATTICE\""));
-        assert!(output.contains("\"preview_owner\":\"FLETCHER\""));
+        assert!(output.contains("\"preview_owner\":\"WITNESS\""));
         assert!(output.contains("\"renderer_owner\":\"PRESS\""));
-        assert!(output.contains("\"fletcher_renders_publication\":false"));
+        assert!(output.contains("\"witness_renders_publication\":false"));
         assert!(output.contains("\"lattice_renders_publication\":false"));
         assert!(output.contains("\"md\""));
         assert!(output.contains("\"html\""));
@@ -6100,7 +6100,7 @@ mod tests {
 
         assert_eq!(report.property_count(), 46);
         assert!(report.passed);
-        assert!(output.contains("\"schema\":\"fletcher.lattice-algebra-validation.v1\""));
+        assert!(output.contains("\"schema\":\"witness.lattice-algebra-validation.v1\""));
         assert!(output.contains("lattice-cli validate algebra --json"));
         assert!(output
             .contains("\"consumed_contract_schema\":\"lattice.algebra-property-validation.v1\""));
@@ -6158,12 +6158,12 @@ mod tests {
         assert_eq!(report.boundary_edge_count, 6);
         assert_eq!(report.alignment_row_count, 5);
         assert_eq!(report.conflicting_boundary_count, 1);
-        assert!(!report.fletcher_recomputes_alignment);
-        assert!(output.contains("\"schema\":\"fletcher.lattice-shard-display.v1\""));
+        assert!(!report.witness_recomputes_alignment);
+        assert!(output.contains("\"schema\":\"witness.lattice-shard-display.v1\""));
         assert!(output.contains("lattice-cli materialize shards demo --json"));
         assert!(output.contains("\"consumed_contract_schema\":\"lattice.shard-alignment-demo.v1\""));
         assert!(output.contains("\"aggregate_hash\":\"lattice-stable-v1:d2b94725746a2216\""));
-        assert!(output.contains("\"fletcher_recomputes_alignment\":false"));
+        assert!(output.contains("\"witness_recomputes_alignment\":false"));
         assert!(output.contains("\"shard_id\":\"engineering-notes-2026-q2\""));
         assert!(output.contains("\"alignment_status\":\"conflict\""));
         assert!(output.contains("\"row_id\":\"conflicts_not_flattened\""));
@@ -6176,12 +6176,12 @@ mod tests {
 
         assert_eq!(report.semantic_owner, "LATTICE");
         assert_eq!(report.scenario_count, 5);
-        assert!(!report.fletcher_recomputes_routing);
-        assert!(output.contains("\"schema\":\"fletcher.lattice-shard-scenarios.v1\""));
+        assert!(!report.witness_recomputes_routing);
+        assert!(output.contains("\"schema\":\"witness.lattice-shard-scenarios.v1\""));
         assert!(output.contains("lattice-cli shards scenarios --json"));
         assert!(output.contains("\"consumed_contract_schema\":\"lattice.shard-scenario-set.v1\""));
         assert!(output.contains("\"scenario_hash\":\"lattice-stable-v1:ab04b3ad46ccdc5f\""));
-        assert!(output.contains("\"fletcher_recomputes_routing\":false"));
+        assert!(output.contains("\"witness_recomputes_routing\":false"));
         assert!(output.contains("\"scenario_id\":\"support-conflict-route\""));
         assert!(output.contains("\"scenario_id\":\"coverage-gap-sweep\""));
         assert!(output.contains("edge-support-engineering-conflict"));
@@ -6195,12 +6195,12 @@ mod tests {
         assert_eq!(report.semantic_owner, "LATTICE");
         assert_eq!(report.check_count, 6);
         assert!(report.validation_passed);
-        assert!(!report.fletcher_recomputes_validation);
-        assert!(output.contains("\"schema\":\"fletcher.lattice-shard-validation.v1\""));
+        assert!(!report.witness_recomputes_validation);
+        assert!(output.contains("\"schema\":\"witness.lattice-shard-validation.v1\""));
         assert!(output.contains("lattice-cli validate shards --workspace .lattice-shards --json"));
         assert!(output
             .contains("\"consumed_contract_schema\":\"lattice.shard-artifact-validation.v1\""));
-        assert!(output.contains("\"fletcher_recomputes_validation\":false"));
+        assert!(output.contains("\"witness_recomputes_validation\":false"));
         assert!(output.contains("\"name\":\"aggregate-hash-replay\""));
         assert!(output.contains("\"name\":\"summary-counts-replay\""));
         assert!(output.contains("\"name\":\"fixed-middle-boundary\""));
@@ -6220,7 +6220,7 @@ mod tests {
     fn format_matrix_json_names_lattice_validation_surface() {
         let output = format_matrix_fixture().to_json();
 
-        assert!(output.contains("\"schema\":\"fletcher.format-matrix.v1\""));
+        assert!(output.contains("\"schema\":\"witness.format-matrix.v1\""));
         assert!(output.contains("\"target\":\"claude-code\""));
         assert!(output.contains("\"target\":\"copilot-agent\""));
         assert!(output.contains("validate LATTICE contracts"));
@@ -6241,7 +6241,7 @@ mod tests {
 
     #[test]
     fn checkpoint_write_report_matches_artifact_content() {
-        let report = checkpoint_write_report("target/fletcher-checkpoints/claude-session.json");
+        let report = checkpoint_write_report("target/witness-checkpoints/claude-session.json");
         let artifact = report.artifact_json();
 
         assert_eq!(report.byte_count, artifact.len());
@@ -6249,8 +6249,8 @@ mod tests {
         assert_eq!(report.rehydration_status, "ready-from-receipts");
         assert!(report
             .to_json()
-            .contains("\"schema\":\"fletcher.checkpoint-write.v1\""));
-        assert!(artifact.contains("\"schema\":\"fletcher.checkpoint-artifact.v1\""));
+            .contains("\"schema\":\"witness.checkpoint-write.v1\""));
+        assert!(artifact.contains("\"schema\":\"witness.checkpoint-artifact.v1\""));
     }
 
     #[test]
@@ -6267,7 +6267,7 @@ mod tests {
     fn session_corpus_review_json_keeps_raw_logs_out_of_truth() {
         let output = session_corpus_review_fixture().to_json();
 
-        assert!(output.contains("\"schema\":\"fletcher.session-corpus-review.v1\""));
+        assert!(output.contains("\"schema\":\"witness.session-corpus-review.v1\""));
         assert!(output.contains("\"raw_ingestion_allowed\":false"));
         assert!(output.contains("\"id\":\"secret-exclusion\""));
         assert!(output.contains("\"id\":\"raw-chat-minimization\""));
@@ -6291,7 +6291,7 @@ mod tests {
     fn maxim_scenarios_json_names_goal_shapes() {
         let output = maxim_scenario_fixture().to_json();
 
-        assert!(output.contains("\"schema\":\"fletcher.maxim-scenarios.v1\""));
+        assert!(output.contains("\"schema\":\"witness.maxim-scenarios.v1\""));
         assert!(output.contains("\"result_shape\":\"launch-craft\""));
         assert!(output.contains("\"result_shape\":\"cargo-crates\""));
         assert!(output.contains("\"saved_chunk\":\"chunk:launch-readiness-pack\""));
@@ -6318,7 +6318,7 @@ mod tests {
     fn maxim_conversations_json_names_real_harness_conversation_shapes() {
         let output = maxim_conversation_fixture().to_json();
 
-        assert!(output.contains("\"schema\":\"fletcher.maxim-conversations.v1\""));
+        assert!(output.contains("\"schema\":\"witness.maxim-conversations.v1\""));
         assert!(output.contains("\"title\":\"Launch readiness conversation\""));
         assert!(output.contains("\"expected_shape\":\"evidence-constellation\""));
         assert!(output.contains("\"harness_event\":\"frontier-preserved\""));
@@ -6331,7 +6331,7 @@ mod tests {
         let eval = maxim_conversation_eval_fixture();
 
         assert_eq!(eval.corpus, "MAXIM");
-        assert_eq!(eval.evaluation_target, "fletcher.maxim-conversations.v1");
+        assert_eq!(eval.evaluation_target, "witness.maxim-conversations.v1");
         assert_eq!(eval.semantic_owner, "LATTICE");
         assert_eq!(eval.scenario_count, 3);
         assert_eq!(eval.passed_count, 3);
@@ -6343,7 +6343,7 @@ mod tests {
     fn maxim_conversation_eval_json_names_gate_results() {
         let output = maxim_conversation_eval_fixture().to_json();
 
-        assert!(output.contains("\"schema\":\"fletcher.maxim-conversation-eval.v1\""));
+        assert!(output.contains("\"schema\":\"witness.maxim-conversation-eval.v1\""));
         assert!(output.contains("\"pointer_gate\":\"passed:maxim-pointer-present\""));
         assert!(output.contains("\"visual_gate\":\"passed:visual-update-per-turn\""));
         assert!(output.contains("\"shape_gate\":\"passed:route-lattice\""));
@@ -6367,7 +6367,7 @@ mod tests {
     fn maxim_conversation_replay_json_names_transcript_and_assertions() {
         let output = maxim_conversation_replay_fixture().to_json();
 
-        assert!(output.contains("\"schema\":\"fletcher.maxim-conversation-replay.v1\""));
+        assert!(output.contains("\"schema\":\"witness.maxim-conversation-replay.v1\""));
         assert!(output.contains("\"transcript\":\"maxim-launch-readiness-chat\""));
         assert!(output.contains("\"expected_delta\":\"add_source\""));
         assert!(output.contains("\"visual_frame\":\"launch-craft-formed-with-frontier-cargo\""));
@@ -6391,9 +6391,9 @@ mod tests {
     fn maxim_conversation_sync_json_names_visual_contracts() {
         let output = maxim_conversation_sync_fixture().to_json();
 
-        assert!(output.contains("\"schema\":\"fletcher.maxim-conversation-sync.v1\""));
-        assert!(output.contains("\"visual_contract\":\"fletcher.conversation-surface.v1\""));
-        assert!(output.contains("\"visual_contract\":\"fletcher.artifact-assembly.v1\""));
+        assert!(output.contains("\"schema\":\"witness.maxim-conversation-sync.v1\""));
+        assert!(output.contains("\"visual_contract\":\"witness.conversation-surface.v1\""));
+        assert!(output.contains("\"visual_contract\":\"witness.artifact-assembly.v1\""));
         assert!(output.contains("\"sync_gate\":\"passed:artifact-with-frontier\""));
         assert!(output.contains("\"failed_count\":0"));
         assert!(output.contains("\"semantic_owner\":\"LATTICE\""));
@@ -6405,7 +6405,7 @@ mod tests {
 
         assert_eq!(
             readiness.intended_command,
-            "fletcher-cli chat web --port 8787"
+            "witness-cli chat web --port 8787"
         );
         assert_eq!(readiness.host_policy, "localhost-only-fixture-backed");
         assert_eq!(readiness.semantic_owner, "LATTICE");
@@ -6419,9 +6419,9 @@ mod tests {
     fn chat_web_readiness_json_lists_web_feeds() {
         let output = chat_web_readiness_fixture().to_json();
 
-        assert!(output.contains("\"schema\":\"fletcher.chat-web-readiness.v1\""));
+        assert!(output.contains("\"schema\":\"witness.chat-web-readiness.v1\""));
         assert!(output.contains("\"path\":\"/api/chat/replay\""));
-        assert!(output.contains("\"data_feed\":\"fletcher.maxim-conversation-sync.v1\""));
+        assert!(output.contains("\"data_feed\":\"witness.maxim-conversation-sync.v1\""));
         assert!(output.contains("\"render_state\":\"launch craft with frontier cargo\""));
         assert!(output.contains("\"privacy_gate\":\"no-raw-source\""));
         assert!(output.contains("\"semantic_owner\":\"LATTICE\""));
@@ -6445,13 +6445,13 @@ mod tests {
     fn chat_web_fixture_bundle_json_embeds_render_payloads() {
         let output = chat_web_fixture_bundle().to_json();
 
-        assert!(output.contains("\"schema\":\"fletcher.chat-web-fixture.v1\""));
+        assert!(output.contains("\"schema\":\"witness.chat-web-fixture.v1\""));
         assert!(output.contains("\"bootstrap_route\":\"/api/bootstrap\""));
-        assert!(output.contains("\"web_ready\":{\"schema\":\"fletcher.chat-web-readiness.v1\""));
+        assert!(output.contains("\"web_ready\":{\"schema\":\"witness.chat-web-readiness.v1\""));
         assert!(output
-            .contains("\"maxim_replay\":{\"schema\":\"fletcher.maxim-conversation-replay.v1\""));
+            .contains("\"maxim_replay\":{\"schema\":\"witness.maxim-conversation-replay.v1\""));
         assert!(
-            output.contains("\"artifact_assembly\":{\"schema\":\"fletcher.artifact-assembly.v1\"")
+            output.contains("\"artifact_assembly\":{\"schema\":\"witness.artifact-assembly.v1\"")
         );
         assert!(output.contains("\"privacy_gate\":\"pointer-only-no-provider-no-raw-source\""));
     }
@@ -6474,7 +6474,7 @@ mod tests {
     fn chat_web_storyboard_json_maps_replay_to_visual_cues() {
         let output = chat_web_storyboard_fixture().to_json();
 
-        assert!(output.contains("\"schema\":\"fletcher.chat-web-storyboard.v1\""));
+        assert!(output.contains("\"schema\":\"witness.chat-web-storyboard.v1\""));
         assert!(output.contains("\"active_panel\":\"panel:context-field\""));
         assert!(output.contains(
             "\"animation_cue\":\"launch craft forms with frontier cargo still connected\""
@@ -6489,7 +6489,7 @@ mod tests {
 
         assert_eq!(
             acceptance.target_command,
-            "fletcher-cli chat web --port 8787"
+            "witness-cli chat web --port 8787"
         );
         assert_eq!(acceptance.semantic_owner, "LATTICE");
         assert_eq!(acceptance.criterion_count, 6);
@@ -6504,9 +6504,9 @@ mod tests {
     fn chat_web_acceptance_json_lists_bootstrap_and_safety_checks() {
         let output = chat_web_acceptance_fixture().to_json();
 
-        assert!(output.contains("\"schema\":\"fletcher.chat-web-acceptance.v1\""));
-        assert!(output.contains("\"target_command\":\"fletcher-cli chat web --port 8787\""));
-        assert!(output.contains("\"evidence_feed\":\"fletcher.chat-web-fixture.v1\""));
+        assert!(output.contains("\"schema\":\"witness.chat-web-acceptance.v1\""));
+        assert!(output.contains("\"target_command\":\"witness-cli chat web --port 8787\""));
+        assert!(output.contains("\"evidence_feed\":\"witness.chat-web-fixture.v1\""));
         assert!(output.contains(
             "\"expected_check\":\"privacy_gate is pointer-only-no-provider-no-raw-source\""
         ));
@@ -6529,7 +6529,7 @@ mod tests {
     fn visual_context_json_names_user_visible_shapes() {
         let output = visual_context_fixture().to_json();
 
-        assert!(output.contains("\"schema\":\"fletcher.visual-context.v1\""));
+        assert!(output.contains("\"schema\":\"witness.visual-context.v1\""));
         assert!(output.contains("\"motion\":\"wide unresolved field\""));
         assert!(output.contains("\"shape\":\"launch-craft\""));
         assert!(output.contains("\"shape\":\"cargo-crates\""));
@@ -6552,7 +6552,7 @@ mod tests {
     fn visual_shape_catalog_json_links_chunks_to_lattice_evidence() {
         let output = visual_shape_catalog_fixture().to_json();
 
-        assert!(output.contains("\"schema\":\"fletcher.visual-shapes.v1\""));
+        assert!(output.contains("\"schema\":\"witness.visual-shapes.v1\""));
         assert!(output.contains("\"artifact_shape\":\"launch-craft\""));
         assert!(output.contains("\"artifact_shape\":\"constraint-enclosure\""));
         assert!(output.contains("\"saveable_chunk\":\"chunk:reusable-source-cargo\""));
@@ -6573,7 +6573,7 @@ mod tests {
     fn chunk_inventory_json_names_saved_context_chunks() {
         let output = chunk_inventory_fixture().to_json();
 
-        assert!(output.contains("\"schema\":\"fletcher.chunk-inventory.v1\""));
+        assert!(output.contains("\"schema\":\"witness.chunk-inventory.v1\""));
         assert!(output.contains("\"id\":\"chunk:launch-readiness-pack\""));
         assert!(output.contains("\"artifact_shape\":\"route-lattice\""));
         assert!(output.contains("\"reuse_status\":\"frontier-until-validated\""));
@@ -6598,7 +6598,7 @@ mod tests {
     fn build_meter_json_names_visible_progress_signals() {
         let output = build_meter_fixture().to_json();
 
-        assert!(output.contains("\"schema\":\"fletcher.build-meter.v1\""));
+        assert!(output.contains("\"schema\":\"witness.build-meter.v1\""));
         assert!(output.contains("\"label\":\"Evidence joined\""));
         assert!(output.contains("\"label\":\"Goal artifact formed\""));
         assert!(output.contains("\"lattice_anchor\":\"frontier:lattice-execution\""));
@@ -6621,7 +6621,7 @@ mod tests {
     fn artifact_assembly_json_shows_goal_shape_with_frontier() {
         let output = artifact_assembly_fixture().to_json();
 
-        assert!(output.contains("\"schema\":\"fletcher.artifact-assembly.v1\""));
+        assert!(output.contains("\"schema\":\"witness.artifact-assembly.v1\""));
         assert!(output.contains("\"artifact_shape\":\"launch-craft\""));
         assert!(output.contains("\"role\":\"go/no-go panel\""));
         assert!(output.contains("\"fit_status\":\"frontier\""));
@@ -6645,7 +6645,7 @@ mod tests {
     fn narrowing_trace_json_names_queries_chunks_and_frontier() {
         let output = narrowing_trace_fixture().to_json();
 
-        assert!(output.contains("\"schema\":\"fletcher.narrowing-trace.v1\""));
+        assert!(output.contains("\"schema\":\"witness.narrowing-trace.v1\""));
         assert!(output.contains("\"query\":\"Which market signals are launch-relevant?\""));
         assert!(output.contains("\"saved_chunk\":\"chunk:policy-constraint-pack\""));
         assert!(output.contains("\"frontier\":\"frontier:lattice-execution\""));
@@ -6668,7 +6668,7 @@ mod tests {
     fn conversation_surface_json_links_turns_to_visual_updates() {
         let output = conversation_surface_fixture().to_json();
 
-        assert!(output.contains("\"schema\":\"fletcher.conversation-surface.v1\""));
+        assert!(output.contains("\"schema\":\"witness.conversation-surface.v1\""));
         assert!(output.contains("\"primary_surface\":\"chat\""));
         assert!(output.contains("\"harness_event\":\"source-pointers-added\""));
         assert!(output.contains(
@@ -6700,7 +6700,7 @@ mod tests {
     fn operator_showcases_json_preserves_edge_boundary() {
         let output = operator_showcase_fixture().to_json();
 
-        assert!(output.contains("\"schema\":\"fletcher.operator-showcases.v1\""));
+        assert!(output.contains("\"schema\":\"witness.operator-showcases.v1\""));
         assert!(output.contains("\"generic_dialect_system\":false"));
         assert!(output.contains("\"id\":\"compare\""));
         assert!(output.contains("\"output_layer\":\"CompareReport\""));
@@ -6717,7 +6717,7 @@ mod tests {
             "lattice.operator-scenario-catalog.v1"
         );
         assert_eq!(report.semantic_owner, "LATTICE");
-        assert_eq!(report.edge_viewer, "FLETCHER");
+        assert_eq!(report.edge_viewer, "WITNESS");
         assert!(!report.generic_dialect_system);
         assert_eq!(report.scenario_count(), 11);
         assert!(report.scenarios.iter().any(|scenario| {
@@ -6737,11 +6737,11 @@ mod tests {
     fn lattice_scenario_operator_catalog_json_preserves_boundary() {
         let output = lattice_scenario_operator_catalog_fixture().to_json();
 
-        assert!(output.contains("\"schema\":\"fletcher.lattice-scenario-operators.v1\""));
+        assert!(output.contains("\"schema\":\"witness.lattice-scenario-operators.v1\""));
         assert!(output
             .contains("\"consumed_contract_schema\":\"lattice.operator-scenario-catalog.v1\""));
         assert!(output.contains("\"semantic_owner\":\"LATTICE\""));
-        assert!(output.contains("\"edge_viewer\":\"FLETCHER\""));
+        assert!(output.contains("\"edge_viewer\":\"WITNESS\""));
         assert!(output.contains("\"generic_dialect_system\":false"));
         assert!(output.contains("\"scenario_count\":11"));
         assert!(output.contains("\"operators\":[\"search\",\"meet\",\"join\",\"frontier\"]"));

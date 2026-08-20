@@ -1,6 +1,6 @@
 # Public Core Maintenance
 
-This repository is the canonical public home for product-neutral FLETCHER
+This repository is the canonical public home for product-neutral WITNESS
 harness events, deltas, checkpoints, replay, and LATTICE handoff contracts.
 
 ## Promotion boundary
