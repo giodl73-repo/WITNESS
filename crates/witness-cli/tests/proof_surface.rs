@@ -20,6 +20,26 @@ fn replay_cli_proof_records_acceptance_and_structured_failure() {
     assert!(stdout.contains(proof["accepted.stdout"]));
     assert!(stdout.contains(proof["accepted.events"]));
 
+    let accepted_json = Command::new(env!("CARGO_BIN_EXE_witness-cli"))
+        .arg(proof["accepted.command"])
+        .arg("--json")
+        .output()
+        .expect("run accepted JSON replay");
+    assert!(accepted_json.status.success());
+    let json_stdout = String::from_utf8(accepted_json.stdout).unwrap();
+    assert!(json_stdout.contains(proof["accepted.json_schema"]));
+    assert!(json_stdout.contains(proof["accepted.json_events"]));
+
+    let status_json = Command::new(env!("CARGO_BIN_EXE_witness-cli"))
+        .arg("status")
+        .arg("--json")
+        .output()
+        .expect("run JSON status");
+    assert!(status_json.status.success());
+    assert!(String::from_utf8(status_json.stdout)
+        .unwrap()
+        .contains(proof["status.json_schema"]));
+
     let rejected = Command::new(env!("CARGO_BIN_EXE_witness-cli"))
         .arg(proof["rejected.command"])
         .output()

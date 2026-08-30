@@ -39,6 +39,8 @@ selection, or semantic closure.
 ```powershell
 cargo run -p witness-cli -- status
 cargo run -p witness-cli -- replay
+cargo run -p witness-cli -- status --json
+cargo run -p witness-cli -- replay --json
 ```
 
 ## Crates
@@ -71,7 +73,8 @@ cargo test -p witness-cli --test proof_surface
 ```
 
 The fixture records an accepted deterministic replay with seven events and a
-structured exit-code 2 usage failure for an unsupported command.
+structured exit-code 2 usage failure for an unsupported command. It also covers
+the public JSON replay and status forms.
 
 ## Status
 

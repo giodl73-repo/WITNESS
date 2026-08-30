@@ -1,6 +1,9 @@
 accepted.command=replay
 accepted.stdout=fixture: claude-session
 accepted.events=events: 7
+accepted.json_schema="schema":"witness.harness.v1"
+accepted.json_events="event_count":7
+status.json_schema="schema":"witness.status.v1"
 rejected.command=unknown
-rejected.stderr=usage: witness-cli <status|replay>
+rejected.stderr=usage: witness-cli <status|replay> [--json]
 rejected.exit_code=2

@@ -24,7 +24,8 @@ transitions explicit and prepares them for LATTICE-backed semantic closure.
 ## Near-term work
 
 1. Stabilize event and handoff schemas.
-2. Add JSON output to the public CLI.
+2. Keep JSON output on the public CLI aligned with retained replay and status
+   proof fixtures.
 3. Add fixture-backed provider projection examples.
 4. Define compatibility and fidelity-loss reports.
 5. Add optional live adapters only after safety and consent review.
