@@ -40,6 +40,25 @@ fn replay_cli_proof_records_acceptance_and_structured_failure() {
         .unwrap()
         .contains(proof["status.json_schema"]));
 
+    let projection = Command::new(env!("CARGO_BIN_EXE_witness-cli"))
+        .arg(proof["projection.command"])
+        .output()
+        .expect("run provider projection report");
+    assert!(projection.status.success());
+    assert!(String::from_utf8(projection.stdout)
+        .unwrap()
+        .contains(proof["projection.stdout"]));
+
+    let projection_json = Command::new(env!("CARGO_BIN_EXE_witness-cli"))
+        .arg(proof["projection.command"])
+        .arg("--json")
+        .output()
+        .expect("run provider projection JSON report");
+    assert!(projection_json.status.success());
+    let projection_json_stdout = String::from_utf8(projection_json.stdout).unwrap();
+    assert!(projection_json_stdout.contains(proof["projection.json_schema"]));
+    assert!(projection_json_stdout.contains(proof["projection.json_loss"]));
+
     let rejected = Command::new(env!("CARGO_BIN_EXE_witness-cli"))
         .arg(proof["rejected.command"])
         .output()

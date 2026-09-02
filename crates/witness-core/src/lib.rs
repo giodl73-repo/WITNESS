@@ -871,6 +871,93 @@ pub struct OperatorShowcase {
     pub edge_note: &'static str,
 }
 
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct ProviderProjectionReport {
+    pub schema: &'static str,
+    pub fixture: &'static str,
+    pub provider_adapter: &'static str,
+    pub provider_execution: &'static str,
+    pub public_core_contract: &'static str,
+    pub compatibility_status: &'static str,
+    pub unsupported_count: usize,
+    pub redaction_count: usize,
+    pub ordering_loss_count: usize,
+    pub fidelity_gap_count: usize,
+    pub losses: Vec<ProviderProjectionLoss>,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct ProviderProjectionLoss {
+    pub id: &'static str,
+    pub category: &'static str,
+    pub provider_surface: &'static str,
+    pub public_projection: &'static str,
+    pub compatibility: &'static str,
+    pub repair: &'static str,
+}
+
+impl ProviderProjectionReport {
+    pub fn to_json(&self) -> String {
+        let losses = self
+            .losses
+            .iter()
+            .map(ProviderProjectionLoss::to_json)
+            .collect::<Vec<_>>()
+            .join(",");
+        format!(
+            concat!(
+                "{{",
+                "\"schema\":\"{}\",",
+                "\"fixture\":\"{}\",",
+                "\"provider_adapter\":\"{}\",",
+                "\"provider_execution\":\"{}\",",
+                "\"public_core_contract\":\"{}\",",
+                "\"compatibility_status\":\"{}\",",
+                "\"unsupported_count\":{},",
+                "\"redaction_count\":{},",
+                "\"ordering_loss_count\":{},",
+                "\"fidelity_gap_count\":{},",
+                "\"losses\":[{}]",
+                "}}"
+            ),
+            escape_json(self.schema),
+            escape_json(self.fixture),
+            escape_json(self.provider_adapter),
+            escape_json(self.provider_execution),
+            escape_json(self.public_core_contract),
+            escape_json(self.compatibility_status),
+            self.unsupported_count,
+            self.redaction_count,
+            self.ordering_loss_count,
+            self.fidelity_gap_count,
+            losses
+        )
+    }
+}
+
+impl ProviderProjectionLoss {
+    fn to_json(&self) -> String {
+        format!(
+            concat!(
+                "{{",
+                "\"id\":\"{}\",",
+                "\"category\":\"{}\",",
+                "\"provider_surface\":\"{}\",",
+                "\"public_projection\":\"{}\",",
+                "\"compatibility\":\"{}\",",
+                "\"repair\":\"{}\"",
+                "}}"
+            ),
+            escape_json(self.id),
+            escape_json(self.category),
+            escape_json(self.provider_surface),
+            escape_json(self.public_projection),
+            escape_json(self.compatibility),
+            escape_json(self.repair)
+        )
+    }
+}
+
 impl OperatorShowcaseReport {
     pub fn operator_count(&self) -> usize {
         self.showcases.len()
@@ -5633,6 +5720,55 @@ pub fn lattice_scenario_operator_catalog_fixture() -> LatticeScenarioOperatorCat
     }
 }
 
+pub fn provider_projection_fixture() -> ProviderProjectionReport {
+    ProviderProjectionReport {
+        schema: "witness.provider-projection.v1",
+        fixture: "synthetic-provider-session",
+        provider_adapter: "synthetic-safe-adapter",
+        provider_execution: "deterministic-no-provider-call",
+        public_core_contract: "witness.harness.v1",
+        compatibility_status: "compatible-with-declared-loss",
+        unsupported_count: 1,
+        redaction_count: 1,
+        ordering_loss_count: 1,
+        fidelity_gap_count: 1,
+        losses: vec![
+            ProviderProjectionLoss {
+                id: "loss:tool-streaming",
+                category: "unsupported-provider-behavior",
+                provider_surface: "provider streamed partial tool-call arguments",
+                public_projection: "single validation event with complete argument summary",
+                compatibility: "requires explicit unsupported behavior note",
+                repair: "adapter report keeps provider detail outside public core",
+            },
+            ProviderProjectionLoss {
+                id: "loss:private-context",
+                category: "redaction",
+                provider_surface: "provider-native hidden context block",
+                public_projection: "source_pointer redacted to synthetic fixture id",
+                compatibility: "compatible only as pointer-only public evidence",
+                repair: "session-safety review blocks raw provider transcript",
+            },
+            ProviderProjectionLoss {
+                id: "loss:parallel-order",
+                category: "ordering-loss",
+                provider_surface: "parallel provider callbacks shared one timestamp",
+                public_projection: "deterministic event order chosen by fixture id",
+                compatibility: "ordering approximation must be declared",
+                repair: "compatibility report records the lost partial order",
+            },
+            ProviderProjectionLoss {
+                id: "loss:token-metadata",
+                category: "fidelity-gap",
+                provider_surface: "provider token and latency metadata",
+                public_projection: "omitted from witness.harness.v1 event core",
+                compatibility: "non-core metadata requires adapter-owned extension",
+                repair: "provider portability review decides whether a repeated field promotes",
+            },
+        ],
+    }
+}
+
 pub fn delta_engine_coverage_fixture() -> DeltaCoverageReport {
     let replay = claude_session_fixture();
     let deltas = response_delta_fixture();
@@ -6747,5 +6883,32 @@ mod tests {
         assert!(output.contains("\"operators\":[\"search\",\"meet\",\"join\",\"frontier\"]"));
         assert!(output.contains("\"operators\":[\"validate\",\"compare\",\"gaps\",\"explain\"]"));
         assert!(output.contains("\"operators\":[\"search\",\"project\",\"compare\",\"coverage\"]"));
+    }
+
+    #[test]
+    fn provider_projection_fixture_declares_loss_categories() {
+        let report = provider_projection_fixture();
+
+        assert_eq!(report.schema, "witness.provider-projection.v1");
+        assert_eq!(report.provider_execution, "deterministic-no-provider-call");
+        assert_eq!(report.public_core_contract, "witness.harness.v1");
+        assert_eq!(report.compatibility_status, "compatible-with-declared-loss");
+        assert_eq!(report.unsupported_count, 1);
+        assert_eq!(report.redaction_count, 1);
+        assert_eq!(report.ordering_loss_count, 1);
+        assert_eq!(report.fidelity_gap_count, 1);
+    }
+
+    #[test]
+    fn provider_projection_json_keeps_loss_visible() {
+        let output = provider_projection_fixture().to_json();
+
+        assert!(output.contains("\"schema\":\"witness.provider-projection.v1\""));
+        assert!(output.contains("\"provider_adapter\":\"synthetic-safe-adapter\""));
+        assert!(output.contains("\"category\":\"unsupported-provider-behavior\""));
+        assert!(output.contains("\"category\":\"redaction\""));
+        assert!(output.contains("\"category\":\"ordering-loss\""));
+        assert!(output.contains("\"category\":\"fidelity-gap\""));
+        assert!(output.contains("\"compatibility_status\":\"compatible-with-declared-loss\""));
     }
 }

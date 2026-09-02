@@ -77,3 +77,21 @@ organization-specific claims must not enter the public repo by accident.
 
 **Evidence:** `docs/MAINTENANCE.md`,
 `context/waves/2026-07-20-public-core/WAVE.md`, and `CONTRIBUTING.md`.
+
+## WITPUB-I-06: Provider Projection Loss Is Explicit
+
+**Status:** VERIFIED
+
+**Invariant:** Provider projection reports must declare unsupported behavior,
+redaction, ordering loss, and fidelity gaps before a normalized event stream is
+treated as compatible.
+
+**Why it matters:** A provider-normalized replay can pass deterministically
+while hiding the data, ordering, or behavior that was dropped.
+
+**Test:** `cargo test -p witness-core provider_projection` and
+`cargo test -p witness-cli --test proof_surface`.
+
+**Evidence:** `WITPUB-PF-03`, `docs/PROVIDER_PROJECTION.md`,
+`crates/witness-core/src/lib.rs`, `crates/witness-cli/src/main.rs`, and
+`tests/check-provider-projection-boundary.ps1`.

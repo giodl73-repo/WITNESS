@@ -41,6 +41,7 @@ cargo run -p witness-cli -- status
 cargo run -p witness-cli -- replay
 cargo run -p witness-cli -- status --json
 cargo run -p witness-cli -- replay --json
+cargo run -p witness-cli -- provider-projection --json
 ```
 
 ## Crates
@@ -75,6 +76,11 @@ cargo test -p witness-cli --test proof_surface
 The fixture records an accepted deterministic replay with seven events and a
 structured exit-code 2 usage failure for an unsupported command. It also covers
 the public JSON replay and status forms.
+
+The provider projection fixture emits `witness.provider-projection.v1` from
+synthetic data and names unsupported behavior, redaction, ordering loss, and
+fidelity gaps before any adapter can claim compatibility. See
+[`docs/PROVIDER_PROJECTION.md`](docs/PROVIDER_PROJECTION.md).
 
 ## Status
 

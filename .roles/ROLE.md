@@ -24,3 +24,9 @@ recording any provider-specific loss rather than silently extending the neutral 
 1. Use Session Safety Reviewer before accepting fixtures or capture fields.
 2. Use Context Boundary Reviewer and Provider Portability Reviewer for event-schema changes.
 3. Use Harness Runtime Reviewer to close replay, checkpoint, and CLI proof.
+
+## PITFALL gates
+
+| Pitfall | Gate | Required roles |
+|---|---|---|
+| `WITPUB-PF-03` | Provider projection compatibility. Provider adapter, CLI, fixture, or compatibility-report changes must keep unsupported behavior, redaction, ordering loss, and fidelity gaps explicit before any normalized event stream can claim compatibility. | Provider Portability Reviewer; Session Safety Reviewer; Harness Runtime Reviewer |

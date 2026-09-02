@@ -43,7 +43,7 @@ and `crates/witness-core/src/lib.rs`.
 
 ## WITPUB-PF-03: Provider Projection Loss Is Silent
 
-**Status:** OPEN
+**Status:** MITIGATED
 
 **Pattern:** Future provider adapters normalize sessions into public events
 without declaring unsupported provider behavior, missing fields, redactions,
@@ -55,12 +55,16 @@ fidelity-loss reports, safe adapters, and public claims.
 **Detection difficulty:** A normalized event stream can replay cleanly while
 concealing the provider details that were dropped or approximated.
 
-**Structural solution:** Add fixture-backed provider projection examples and
-explicit compatibility/fidelity-loss reports before accepting live or adapter
+**Structural solution:** Public WITNESS now exposes a synthetic
+`witness.provider-projection.v1` report through `witness-cli
+provider-projection --json`, with fixture-backed unsupported-behavior,
+redaction, ordering-loss, and fidelity-gap rows before accepting live or adapter
 claims.
 
-**Evidence:** `PRODUCT_PLAN.md`, `context/waves/PHASES.md`, and
-`.roles/parliament/provider-portability-reviewer.md`.
+**Evidence:** `docs/PROVIDER_PROJECTION.md`, `crates/witness-core/src/lib.rs`,
+`crates/witness-cli/src/main.rs`, `crates/witness-cli/tests/proof_surface.rs`,
+`tests/check-provider-projection-boundary.ps1`, `PRODUCT_PLAN.md`,
+`context/waves/PHASES.md`, and `.roles/parliament/provider-portability-reviewer.md`.
 
 ## WITPUB-PF-04: CLI Machine Output Lags Core Fixtures
 
