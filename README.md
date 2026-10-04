@@ -34,6 +34,13 @@ Sources → FLETCH → MDCROP → LATTICE → WITNESS
 WITNESS records how context is used. It does not own acquisition, candidate
 selection, or semantic closure.
 
+## Browser replay
+
+[Step through the public replay fixture](https://giodl73-repo.github.io/WITNESS/).
+Inspect source pointers, receipts, validation owed, and checkpoints with native
+Rust/WASM. The trace is synthetic and provider-neutral.
+[Architecture and boundaries](docs/browser-replay.md).
+
 ## Quick start
 
 ```powershell

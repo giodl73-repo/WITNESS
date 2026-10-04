@@ -2,6 +2,7 @@
 members = [
     "crates/witness-core",
     "crates/witness-cli",
+    "crates/witness-web",
 ]
 resolver = "2"
 
