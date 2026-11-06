@@ -1,0 +1,20 @@
+{
+  "source_repository": "https://github.com/giodl73-repo/TERRAIN",
+  "source_commit": "5ae4995d7b7e8000e5355278dde9eee70fab625a",
+  "license_file": "TERRAIN-COMPONENTS-LICENSE.txt",
+  "files": [
+    "tools/input_custody.py",
+    "tools/make-inputs.py",
+    "tools/source_custody.py",
+    "tools/receive-source.py",
+    "tools/rust_build.py",
+    "tools/test_source_custody.py",
+    "tools/test_rust_build.py",
+    "web/replay-session.js",
+    "tools/check-source-replay.py",
+    "tools/serve-pages.py",
+    "tools/build-pages.py",
+    "tools/test_input_custody.py"
+  ],
+  "scope": "Source/input/compiler custody, archive replay and worker lifecycle components adapted from the public TERRAIN source. Full original MIT grant retained; no Rust domain code, private data or TRACKER-relative build dependency copied."
+}

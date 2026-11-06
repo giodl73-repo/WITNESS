@@ -1,0 +1,8 @@
+/web/** text eol=lf
+/LICENSE text eol=lf
+context/waves/2026-11-06-public-replay-self-service/validation/** -text whitespace=cr-at-eol,-blank-at-eof
+/cargo-inputs/*.zip -text
+/cargo-inputs/*.sha256 text eol=lf
+/DEPENDENCY-NOTICES.txt -text whitespace=cr-at-eol,-blank-at-eof
+/notices/*.txt -text whitespace=cr-at-eol,-blank-at-eof
+/notices/rust-1.95.0-COPYRIGHT-library.html -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

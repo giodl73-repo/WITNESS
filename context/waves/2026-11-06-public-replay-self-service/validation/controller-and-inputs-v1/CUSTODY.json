@@ -1,0 +1,95 @@
+{
+  "files": [
+    {
+      "path": "0-browser-report.json.gz",
+      "raw_bytes": 5312,
+      "raw_sha256": "af1396878549fb09d912545e5d84febc6b9dee00e6fc10d46d7f8f67bef05f6f",
+      "gzip_sha256": "0ba4e539a7f0298a7f7a28722bcbc521ca6ba3a4d6bea7e7cf24a972a5f06a76"
+    },
+    {
+      "path": "0-browser.stdout.gz",
+      "raw_bytes": 444,
+      "raw_sha256": "2848972e4ca9a114a6c5faee1982ccf0489863d13523b6e5be9d7ee7f761fba8",
+      "gzip_sha256": "167666cc6496e859607ba8c9e866fd1f1fc9754feed47096cfd6656fd94db493"
+    },
+    {
+      "path": "0-browser.stderr.gz",
+      "raw_bytes": 4530,
+      "raw_sha256": "933562f7716b740517936e9ec17f43fa015b7ca261a5052e8d63de041eda8194",
+      "gzip_sha256": "c582e0b05b055d6d2a16ea59f8026555500ae6aa74a9a1e1279898c785792f97"
+    },
+    {
+      "path": "1-browser-report.json.gz",
+      "raw_bytes": 20012,
+      "raw_sha256": "e75860759663ab225580c761b6bd392cb13f692180321b0b8848a2b3fad98cac",
+      "gzip_sha256": "e098c898864e85fe275f7390a37f4330899793f23fbd8ed0d592057bc40c9720"
+    },
+    {
+      "path": "1-browser.stdout.gz",
+      "raw_bytes": 4322,
+      "raw_sha256": "7c4ac24ecdb9fc82991f684ac841e5e08a261976ff78651165d47046cd7737b1",
+      "gzip_sha256": "bc10125e7bd9f401c613cb4727c42505006e7b4a6078e3b1e9398439690277e5"
+    },
+    {
+      "path": "1-browser.stderr.gz",
+      "raw_bytes": 14670,
+      "raw_sha256": "179a0398d46919ece7e75a7570f9fe4f26cd7a8d97bcbe21919ed02a86653628",
+      "gzip_sha256": "67b190d29fb448c963ebb2b7f025196eb5de36b0032917327e6aec7343690e93"
+    },
+    {
+      "path": "2-browser-report.json.gz",
+      "raw_bytes": 16930,
+      "raw_sha256": "67b069d2227136e22dc4a6311c025994764c7dcd1ddc658e718b4408d189f583",
+      "gzip_sha256": "1b418fc2b4e2086275b67a56701696febc54244b2f7a938a9849e7379cb3b6d0"
+    },
+    {
+      "path": "2-browser.stdout.gz",
+      "raw_bytes": 1952,
+      "raw_sha256": "8677410334217da8c3098ed4cee1ace5c6cd2506ea1be97d5a5aee4eb82bf526",
+      "gzip_sha256": "56475d800f17d0cdb05655bcf9ab6c39ba9ad43f4264233af7a0aa296118678b"
+    },
+    {
+      "path": "2-browser.stderr.gz",
+      "raw_bytes": 14338,
+      "raw_sha256": "cb65a37475e6322f520d4892fcb059ebfbe9174b8f958cfe82378b17b556b1d5",
+      "gzip_sha256": "afb401fb2585c8ece8ce8868d4bb6cfb2e1b4ed50b6cf6613e3f4c066db8de13"
+    },
+    {
+      "path": "3-custody.stdout.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzip_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "path": "3-custody.stderr.gz",
+      "raw_bytes": 4459,
+      "raw_sha256": "66d3ded2f2f2bf15fad38c127719e1a5f51979d7cf772b567e67f48e6fc1170c",
+      "gzip_sha256": "040d04c6aec71b2861f3974da10e5ae21b114d315f8e7c2358430ae58b825d0f"
+    },
+    {
+      "path": "3-flags.stdout.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzip_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "path": "3-flags.stderr.gz",
+      "raw_bytes": 367,
+      "raw_sha256": "77d38bb382ed27c00465e954c6fc298258564dcf8a63a624525b76414e1982e7",
+      "gzip_sha256": "c4bc1dc93574ce17a58cd281296d0265e0c9f9a088412db22d139f2f481b3689"
+    },
+    {
+      "path": "4-input-kit-author-receipt.json.gz",
+      "raw_bytes": 328,
+      "raw_sha256": "23fcb6547dfbb8f9b8e3e48710db1e013041f239e202a180cdf04525bb34ca58",
+      "gzip_sha256": "69728059644cb5c7582a1c75200d95f9d5329502bba03dbe368984aa4cf060f0"
+    },
+    {
+      "path": "4-input-tests-v1-observation.json.gz",
+      "raw_bytes": 417,
+      "raw_sha256": "a78ae3b0797c382fa995e2d09b4211dffff5a37a6c19b02dec2004316153e9d0",
+      "gzip_sha256": "2abc7122548cd88612c9e84cde2ed55520af0220c7c6fd7548e9f9c965ca8660"
+    }
+  ],
+  "scope": "Actual controller tests use the original immutable Rust module and current developmental JS/HTML; not a clean package/archive qualification. First13/14 control race and repaired14/14 remain separate. Owned-source receiver33 plus2 flags pass after correcting a copied27-versus20 expected-count literal; verifier rules unchanged."
+}

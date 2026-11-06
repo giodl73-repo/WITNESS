@@ -40,6 +40,10 @@ selection, or semantic closure.
 Inspect source pointers, receipts, validation owed, and checkpoints with native
 Rust/WASM. The trace is synthetic and provider-neutral.
 [Architecture and boundaries](docs/browser-replay.md).
+The self-service source candidate adds Stop/Retry, current-step exports, exact
+Rust-frame/source/input downloads and an independent offline rebuild.
+[Qualification and remaining release gates](context/waves/2026-11-06-public-replay-self-service/WAVE.md)
+keep local source evidence separate from the existing live release.
 
 ## Quick start
 
