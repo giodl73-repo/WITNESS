@@ -5,6 +5,7 @@ import json
 import os
 from pathlib import Path
 import subprocess
+from rust_build import configure, finish
 
 ROOT = Path(__file__).resolve().parents[1]
 STEPS = [*range(10), 31, 32, 255, 65535, 2147483647, 4294967295]
@@ -14,7 +15,11 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--site', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--inputs',type=Path,required=True)
+    parser.add_argument('--cargo-home',type=Path,required=True)
+    parser.add_argument('--target',type=Path,required=True)
     args = parser.parse_args()
+    context = configure(args.inputs,args.cargo_home,args.target)
     output = Path(os.path.abspath(args.output))
     for parent in [output, *output.parents]:
         if parent.is_symlink() or getattr(parent.lstat() if parent.exists() else None, 'st_file_attributes', 0) & 0x400:
@@ -64,6 +69,7 @@ def main():
         native_sha256=hashlib.sha256(native).hexdigest(), wasm_sha256=hashlib.sha256(wasm).hexdigest(),
         raw_abi_observations=5, commands=commands,
         scope='Complete unchanged native frame strings/errors and whole Result NDJSON, not normalized objects. All eight public prefixes plus eight portable typed invalid controls. Raw JS coercions are separate observations. No live/provider/closure execution or full source/delivery claim.')
+    finish(context)
     (output/'receipt.json').write_text(json.dumps(receipt, indent=2)+'\n', encoding='utf-8')
     print(json.dumps({k:v for k,v in receipt.items() if k != 'commands'}))
 
