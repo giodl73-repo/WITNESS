@@ -49,15 +49,24 @@ async function late(page,index=0){
 async function blocked(page){await expect.poll(()=>page.evaluate(()=>window.__workers.some(w=>w.received.some(v=>v.type==='test-stalled')))).toBe(true);}
 async function download(page,id){const pending=page.waitForEvent('download');await page.locator('#'+id).click();const file=await pending;return {name:file.suggestedFilename(),bytes:await fs.readFile(await file.path())};}
 
-test('every public prefix exports the exact native raw frame and original formatted JSON',async({page})=>{
- await page.goto('/WITNESS/');await expect(page.locator('#export')).toBeEnabled();
+test('every public prefix exports the exact native raw frame and original formatted JSON',async({browser,page,baseURL})=>{
+ // Each independent prefix gets a fresh download context: no burst of sixteen
+ // downloads shares Chromium's automatic-download policy state.
  for(let step=0;step<=7;step++){
-  await setStep(page,step);await expect(page.locator('#events')).toHaveText(String(step));await expect(page.locator('#export')).toBeEnabled();
-  await page.locator('#filter').selectOption(step%2?'evidence':'sources');
-  const raw=await download(page,'raw-export'),formatted=await download(page,'export');
-  expect(raw.name).toBe('witness-public-frame.raw.json');expect(raw.bytes.equals(Buffer.from(nativeFrames[step]))).toBe(true);
-  expect(formatted.name).toBe('witness-public-frame.json');expect(formatted.bytes.equals(Buffer.from(JSON.stringify(JSON.parse(nativeFrames[step]),null,2)))).toBe(true);
+  const context=await browser.newContext({baseURL,acceptDownloads:true});
+  try{
+   const prefix=await context.newPage();await prefix.goto('/WITNESS/?step='+step);
+   await expect(prefix.locator('#events')).toHaveText(String(step));await expect(prefix.locator('#export')).toBeEnabled();
+   await prefix.locator('#filter').selectOption(step%2?'evidence':'sources');
+   const raw=await download(prefix,'raw-export'),formatted=await download(prefix,'export');
+   expect(raw.name).toBe('witness-public-frame.raw.json');expect(raw.bytes.equals(Buffer.from(nativeFrames[step]))).toBe(true);
+   expect(formatted.name).toBe('witness-public-frame.json');expect(formatted.bytes.equals(Buffer.from(JSON.stringify(JSON.parse(nativeFrames[step]),null,2)))).toBe(true);
+  }finally{await context.close();}
  }
+ await page.goto('/WITNESS/?step=7');await expect(page.locator('#events')).toHaveText('7');
+ await page.locator('#step').focus();await page.keyboard.press('Home');await expect(page.locator('#events')).toHaveText('0');
+ await page.keyboard.press('ArrowRight');await expect(page.locator('#events')).toHaveText('1');
+ const keyboardRaw=await download(page,'raw-export');expect(keyboardRaw.bytes.equals(Buffer.from(nativeFrames[1]))).toBe(true);
 });
 
 test('Stop terminates a CPU-blocked worker and Retry keeps the selected step and filter',async({page})=>{

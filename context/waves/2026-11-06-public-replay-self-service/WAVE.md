@@ -123,3 +123,21 @@ their actual plain-text contracts. Ubuntu24.04/pinned bindgen tool installation
 and complete no-Git/new-input/home/empty-target source replay are wired into CI.
 The two added package/version/no-JavaScript controls and actual complete package
 still require measurement and qualification at this source revision.
+
+
+## Complete package and hosted download observation
+
+The clean ae8c9f9 package measures2,580,362 bytes and19 published files. Its
+111-file complete source rebuild outside Git with new inputs/home/empty target
+reproduces every file and manifest exactly; native63, full16 typed native/WASM
+frames and16 browser cases pass locally. No default/live promotion yet.
+
+Hosted native CI42199671855 passes. Pages42199671778 passes15/16 cases but times
+out waiting for a download in the sixteen-download, shared-context prefix test.
+Retain the raw failure; Chromium download-policy interference is a hypothesis,
+not a confirmed runtime defect. Each independent prefix now gets a fresh browser
+context and still checks both actual downloads against frozen original native
+bytes. No retry, longer timeout, byte normalization or removed assertion. The
+same case also proves range Home/ArrowRight keyboard selection and an exact raw
+keyboard-selected export. All16 cases pass locally after this test isolation.
+Hosted rerun, actual default and anonymous live gates remain open.
